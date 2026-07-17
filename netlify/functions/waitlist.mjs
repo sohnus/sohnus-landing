@@ -25,7 +25,6 @@ export const handler = async (event) => {
     }])
 
     if (error) {
-      console.error('Supabase error:', JSON.stringify(error))
       if (error.code === '23505') {
         return {
           statusCode: 409,
@@ -47,7 +46,6 @@ export const handler = async (event) => {
     }
 
   } catch (err) {
-    console.error('Function error:', err.message)
     return {
       statusCode: 500,
       headers: { 'Content-Type': 'application/json' },
