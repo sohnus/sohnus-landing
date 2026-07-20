@@ -14,10 +14,6 @@ export const handler = async (event) => {
       process.env.SUPABASE_ANON_KEY
     )
 
-    // Temporary: log env var shape for debugging
-    console.log('URL set:', !!process.env.SUPABASE_URL, '| starts with https:', process.env.SUPABASE_URL?.startsWith('https://'), '| ends with supabase.co:', process.env.SUPABASE_URL?.endsWith('.supabase.co'))
-    console.log('KEY set:', !!process.env.SUPABASE_ANON_KEY, '| key length:', process.env.SUPABASE_ANON_KEY?.length)
-
     // Get client IP (Netlify sets x-nf-client-connection-ip; fall back to x-forwarded-for)
     const ip =
       event.headers['x-nf-client-connection-ip'] ||
