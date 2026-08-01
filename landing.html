@@ -50,20 +50,20 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <!-- Plausible Analytics: cookieless, GDPR compliant -->
   <script defer data-domain="sohnus.com" src="https://plausible.io/js/script.file-downloads.outbound-links.tagged-events.js"></script>
   <script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* BRAND TOKENS,Sohnus Brand Foundations v1.0 */
+    /* BRAND TOKENS, Sohnus Brand Foundations v1.0 */
     :root {
-      --midnight:  #1A2E4A;   /* primary: headlines, navbar, key UI */
-      --amber:     #CB7C22;   /* CTAs, highlights, working-class pride */
-      --teal:      #147B82;   /* links, tags, progress, momentum */
-      --warm-white:#FAF7F4;   /* background,never cold or clinical */
-      --slate:     #E8EDF2;   /* borders, dividers, secondary bg */
+      --midnight:  #1A2E4A;
+      --amber:     #CB7C22;
+      --teal:      #147B82;
+      --warm-white:#FAF7F4;
+      --slate:     #E8EDF2;
       --text:      #1A2E4A;
       --text-muted:#6B7280;
     }
@@ -107,6 +107,61 @@
     }
     .nav-cta:hover { opacity: 0.82; }
 
+    /* ── LANG SWITCHER ── */
+    .lang-switcher { display: flex; align-items: center; position: relative; }
+    .lang-globe {
+      background: none;
+      border: none;
+      padding: 6px;
+      cursor: pointer;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      transition: color 0.15s, background 0.15s;
+    }
+    .lang-globe:hover { color: var(--midnight); background: var(--slate); }
+    .lang-globe svg { display: block; }
+    .lang-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      background: #fff;
+      border: 1.5px solid var(--slate);
+      border-radius: 10px;
+      padding: 4px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+      min-width: 130px;
+      list-style: none;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-4px);
+      transition: opacity 0.15s, transform 0.15s;
+      z-index: 200;
+    }
+    .lang-switcher.open .lang-menu {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+    .lang-menu li button {
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      padding: 8px 12px;
+      font-size: 13px;
+      font-weight: 500;
+      font-family: 'Inter', sans-serif;
+      color: var(--midnight);
+      cursor: pointer;
+      border-radius: 7px;
+      transition: background 0.1s;
+    }
+    .lang-menu li button:hover { background: var(--slate); }
+    .lang-menu li button.active { color: var(--teal); font-weight: 600; }
+
     /* ── HERO ── */
     .hero {
       padding: 80px 48px 72px;
@@ -134,6 +189,7 @@
       width: 7px; height: 7px;
       border-radius: 50%;
       background: var(--teal);
+      flex-shrink: 0;
     }
     .hero h1 {
       font-family: 'DM Serif Display', serif;
@@ -144,25 +200,12 @@
       margin-bottom: 24px;
     }
     .hero h1 em { font-style: italic; color: var(--amber); }
-    .hero-vision {
+    .hero-sub {
       font-size: clamp(16px, 2.5vw, 19px);
       line-height: 1.75;
       color: #4B5563;
       max-width: 600px;
-      margin-bottom: 14px;
-    }
-    .hero-vision strong { color: var(--midnight); font-weight: 600; }
-    .hero-vision .jobs {
-      display: inline;
-      font-weight: 600;
-      color: var(--midnight);
-    }
-    .hero-sub {
-      font-size: 15px;
-      color: var(--text-muted);
       margin-bottom: 40px;
-      max-width: 520px;
-      line-height: 1.7;
     }
     .hero-actions {
       display: flex;
@@ -187,85 +230,7 @@
     .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
     .hero-note { font-size: 13px; color: var(--text-muted); }
 
-    /* ── HERO VISUAL ── */
-    .hero-visual { position: relative; padding: 32px 0 48px; }
-    .hv-card {
-      background: #fff;
-      border: 1.5px solid var(--slate);
-      border-radius: 20px;
-      padding: 28px;
-      box-shadow: 0 8px 40px rgba(26,46,74,0.10);
-    }
-    .hv-top { display: flex; align-items: center; gap: 14px; margin-bottom: 22px; }
-    .hv-avatar {
-      width: 46px; height: 46px; border-radius: 50%;
-      background: var(--midnight);
-      color: #fff;
-      font-weight: 700; font-size: 15px;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
-    .hv-name { font-weight: 600; font-size: 15px; color: var(--midnight); }
-    .hv-trade { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
-    .hv-badge {
-      margin-left: auto;
-      background: #ECFDF5; color: #065F46;
-      font-size: 11px; font-weight: 700;
-      padding: 4px 10px; border-radius: 20px;
-      letter-spacing: 0.4px;
-    }
-    .hv-skills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 22px; }
-    .hv-skills span {
-      background: #EDF5F5; color: var(--teal);
-      font-size: 12px; font-weight: 600;
-      padding: 5px 12px; border-radius: 20px;
-    }
-    .hv-stat-row { display: flex; gap: 0; border-top: 1px solid var(--slate); padding-top: 18px; }
-    .hv-stat { flex: 1; text-align: center; }
-    .hv-stat + .hv-stat { border-left: 1px solid var(--slate); }
-    .hv-stat-n { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--midnight); }
-    .hv-stat-l { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
-    .hv-pill-float {
-      position: absolute;
-      background: var(--midnight); color: #fff;
-      font-size: 12px; font-weight: 600;
-      padding: 8px 16px; border-radius: 24px;
-      white-space: nowrap;
-      box-shadow: 0 4px 16px rgba(26,46,74,0.18);
-    }
-    .hv-pill-1 { bottom: 20px; left: -16px; background: var(--amber); }
-    .hv-pill-2 { top: 16px; right: -12px; font-size: 11px; }
-
     .rule { height: 1px; background: var(--slate); margin: 0 24px; }
-
-    /* ── TRADES STRIP ── */
-    .trades {
-      padding: 36px 24px;
-      max-width: 720px;
-      margin: 0 auto;
-    }
-    .trades-label {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1.4px;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 16px;
-    }
-    .trades-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .trade-chip {
-      background: #fff;
-      border: 1.5px solid var(--slate);
-      border-radius: 20px;
-      padding: 6px 14px;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--midnight);
-    }
 
     /* ── PAIN ── */
     .pain {
@@ -301,12 +266,6 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
-    }
-    .pain-num {
-      font-family: 'DM Serif Display', serif;
-      font-size: 28px;
-      color: var(--amber);
-      line-height: 1;
     }
     .pain-card h3 {
       font-family: 'DM Serif Display', serif;
@@ -395,15 +354,6 @@
       margin-bottom: 12px;
     }
     .pillar p { font-size: 15px; color: #4B5563; line-height: 1.75; }
-    .pillar-n {
-      position: absolute;
-      top: 20px; right: 28px;
-      font-family: 'DM Serif Display', serif;
-      font-size: 72px;
-      color: var(--slate);
-      line-height: 1;
-      user-select: none;
-    }
 
     /* ── FOUNDERS ── */
     .founders {
@@ -562,7 +512,6 @@
       gap: 8px;
     }
     .footer-logo { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--midnight); }
-    .footer-tagline { font-size: 13px; color: var(--text-muted); font-style: italic; }
     .footer-legal { margin-top: 16px; font-size: 12px; color: var(--text-muted); display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 20px; }
     .footer-legal a { color: var(--text-muted); text-decoration: underline; }
     .footer-legal a:hover { color: var(--teal); }
@@ -585,12 +534,12 @@
     /* ── MOBILE ── */
     @media (max-width: 600px) {
       nav { padding: 14px 20px; }
+      .lang-globe { padding: 4px; }
 
       .hero { padding: 48px 20px 40px; gap: 32px; }
       .hero h1 { font-size: 38px; letter-spacing: -0.5px; }
       .hero-sub { font-size: 14px; margin-bottom: 28px; }
       .hero-note { font-size: 12px; }
-      .hero-visual { display: none; }
 
       .pain { padding: 48px 20px; }
       .pain-intro { font-size: 24px; margin-bottom: 28px; }
@@ -609,7 +558,6 @@
       .pillar { padding: 24px; }
       .pillar h3 { font-size: 18px; }
       .pillar p { font-size: 13px; }
-      .pillar-n { font-size: 52px; }
 
       .founders { padding: 48px 20px; }
       .founders-quote { font-size: 22px; }
@@ -626,60 +574,98 @@
       footer { flex-direction: column; align-items: flex-start; padding: 20px; }
       .footer-legal { justify-content: flex-start; }
     }
+
+    /* ── RTL (Arabic) ── */
+    [dir=rtl] body { font-family: 'Inter', 'Amiri', sans-serif; }
+    [dir=rtl] .hero h1,
+    [dir=rtl] .pain-intro,
+    [dir=rtl] .building-head,
+    [dir=rtl] .pillar h3,
+    [dir=rtl] .pain-card h3,
+    [dir=rtl] .founders-quote,
+    [dir=rtl] .waitlist h2,
+    [dir=rtl] .success h3 {
+      font-family: 'Amiri', serif;
+      letter-spacing: 0;
+    }
+    [dir=rtl] .hero h1 { letter-spacing: 0; }
+    [dir=rtl] .hero-pill::before { order: 1; }
+    [dir=rtl] .wl-phone-group { flex-direction: row-reverse; }
+    [dir=rtl] footer { flex-direction: row-reverse; }
+    [dir=rtl] .footer-legal { flex-direction: row-reverse; }
+    @media (max-width: 600px) {
+      [dir=rtl] footer { flex-direction: column; align-items: flex-end; }
+    }
   </style>
 </head>
 <body>
 
   <nav id="nav">
-    <a href="/" class="logo" aria-label="Sohnus home">
+    <a href="/" class="logo" aria-label="Sohnus home" dir="ltr">
       <svg viewBox="0 0 320 72" height="36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <text x="0" y="58" font-family="Inter, system-ui, -apple-system, sans-serif" font-weight="800" letter-spacing="-1">
           <tspan font-size="68" fill="#CB7C22">S</tspan><tspan font-size="56" fill="#1A2E4A">ohnus</tspan>
         </text>
       </svg>
     </a>
-    <a href="#waitlist" class="nav-cta">Join the waitlist</a>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <a href="#waitlist" class="nav-cta" data-i18n="nav-cta">Join the waitlist</a>
+      <div class="lang-switcher" id="lang-switcher">
+        <button class="lang-globe" id="lang-globe-btn" aria-label="Select language" aria-expanded="false" aria-haspopup="listbox">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="10" cy="10" r="8.25" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M10 1.75C10 1.75 7.25 5 7.25 10C7.25 15 10 18.25 10 18.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M10 1.75C10 1.75 12.75 5 12.75 10C12.75 15 10 18.25 10 18.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M1.75 10H18.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M2.5 6.75H17.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M2.5 13.25H17.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <ul class="lang-menu" id="lang-menu" role="listbox" aria-label="Language">
+          <li role="option"><button data-lang="en" onclick="pickLang('en')">English</button></li>
+          <li role="option"><button data-lang="de" onclick="pickLang('de')">Deutsch</button></li>
+          <li role="option"><button data-lang="es" onclick="pickLang('es')">Español</button></li>
+          <li role="option"><button data-lang="ar" onclick="pickLang('ar')">العربية</button></li>
+        </ul>
+      </div>
+    </div>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
     <div class="hero-content">
-      <div class="hero-pill">For blue-collar workers</div>
-      <h1>Blue-collar workers<br/><em>seen, valued,<br/>connected.</em></h1>
-      <p class="hero-sub">
+      <div class="hero-pill" data-i18n="hero-pill">For blue-collar workers</div>
+      <h1 data-i18n="hero-h1">Blue-collar workers<br><em>seen, valued,<br>connected.</em></h1>
+      <p class="hero-sub" data-i18n="hero-sub">
         We are the sons of blue-collar families. We grew up, built careers, and came back.
         Sohnus is what we are building for our people.
       </p>
       <div class="hero-actions">
-        <a href="#waitlist" class="btn-primary">Join the waitlist</a>
-        <span class="hero-note">We read every name on this list. You will hear from us.</span>
+        <a href="#waitlist" class="btn-primary" data-i18n="hero-btn">Join the waitlist</a>
+        <span class="hero-note" data-i18n="hero-note">We read every name on this list. You will hear from us.</span>
       </div>
     </div>
   </section>
 
-
   <!-- PAIN POINTS -->
   <section class="pain">
-    <p class="section-label">What we're fixing</p>
-    <h2 class="pain-intro">You're good at your job.<br/>The system doesn't see it.</h2>
+    <p class="section-label" data-i18n="pain-label">What we're fixing</p>
+    <h2 class="pain-intro" data-i18n="pain-intro">You're good at your job.<br>The system doesn't see it.</h2>
     <div class="pain-cards">
 
       <div class="pain-card">
-
-        <h3>You've spent years getting good at this. Nobody outside your workplace knows it.</h3>
-        <p>There's no profile for people who work with their hands. No way to show what you've built, what you know, or how long you've been doing it. To everyone else, you have to start over and prove yourself again.</p>
+        <h3 data-i18n="pain-1-h3">You've spent years getting good at this. Nobody outside your workplace knows it.</h3>
+        <p data-i18n="pain-1-p">There's no profile for people who work with their hands. No way to show what you've built, what you know, or how long you've been doing it. To everyone else, you have to start over and prove yourself again.</p>
       </div>
 
       <div class="pain-card">
-
-        <h3>The job was posted at 7am. By the time your shift ended, it was gone.</h3>
-        <p>Work opportunities live in WhatsApp chats and Facebook groups. They move fast. When you do reply, you're one name out of fifty, and nobody in that thread knows who you are. No history. No reputation. Just another message in a chat that's already moved on.</p>
+        <h3 data-i18n="pain-2-h3">The job was posted at 7am. By the time your shift ended, it was gone.</h3>
+        <p data-i18n="pain-2-p">Work opportunities live in WhatsApp chats and Facebook groups. They move fast. When you do reply, you're one name out of fifty, and nobody in that thread knows who you are. No history. No reputation. Just another message in a chat that's already moved on.</p>
       </div>
 
       <div class="pain-card">
-
-        <h3>They called while you were working. Then they stopped calling.</h3>
-        <p>You get a callback, finally. They want to interview you Wednesday at 2pm. You're on shift. You explain. They say they'll find another time. You follow up. Nothing. By then they've moved on to someone else.</p>
+        <h3 data-i18n="pain-3-h3">They called while you were working. Then they stopped calling.</h3>
+        <p data-i18n="pain-3-p">You get a callback, finally. They want to interview you Wednesday at 2pm. You're on shift. You explain. They say they'll find another time. You follow up. Nothing. By then they've moved on to someone else.</p>
       </div>
 
     </div>
@@ -688,19 +674,19 @@
   <!-- STATS -->
   <div class="stats">
     <div class="stats-inner">
-      <p class="stats-label-dark">The numbers behind what you feel</p>
+      <p class="stats-label-dark" data-i18n="stats-label">The numbers behind what you feel</p>
       <div class="stats-grid">
         <div>
           <div class="stat-num">77<span>%</span></div>
-          <div class="stat-desc">of blue-collar workers feel undervalued for the work they do</div>
+          <div class="stat-desc" data-i18n="stat-1-desc">of blue-collar workers feel undervalued for the work they do</div>
         </div>
         <div>
           <div class="stat-num">49.6<span>%</span></div>
-          <div class="stat-desc">use Facebook as their primary job search channel, with no professional identity attached</div>
+          <div class="stat-desc" data-i18n="stat-2-desc">use Facebook as their primary job search channel, with no professional identity attached</div>
         </div>
         <div>
           <div class="stat-num">92<span>%</span></div>
-          <div class="stat-desc">of workers who click Apply never finish the application, the system was never built for them</div>
+          <div class="stat-desc" data-i18n="stat-3-desc">of workers who click Apply never finish the application, the system was never built for them</div>
         </div>
       </div>
     </div>
@@ -708,33 +694,30 @@
 
   <!-- WHAT WE'RE BUILDING -->
   <section class="building">
-    <p class="section-label">What Sohnus is</p>
-    <h2 class="building-head">Three things workers were<br/>never given. We're <em>building all of them.</em></h2>
-    <p class="building-sub">
+    <p class="section-label" data-i18n="building-label">What Sohnus is</p>
+    <h2 class="building-head" data-i18n="building-head">Three things workers were<br>never given. We're <em>building all of them.</em></h2>
+    <p class="building-sub" data-i18n="building-sub">
       We're being upfront, this is our roadmap. What we're building first, what comes next, and where we're going.
     </p>
 
     <div class="pillars">
 
       <div class="pillar">
-
-        <span class="pillar-tag">Phase 1:Identity &amp; Community</span>
-        <h3>A professional home for workers</h3>
-        <p>A profile that shows who you are: your skills, your experience, proof of what you've done. A feed where you connect with workers in your trade, share what you know, and learn from people who've been where you are.</p>
+        <span class="pillar-tag" data-i18n="pillar-1-tag">Phase 1: Identity &amp; Community</span>
+        <h3 data-i18n="pillar-1-h3">A professional home for workers</h3>
+        <p data-i18n="pillar-1-p">A profile that shows who you are: your skills, your experience, proof of what you've done. A feed where you connect with workers in your trade, share what you know, and learn from people who've been where you are.</p>
       </div>
 
       <div class="pillar">
-
-        <span class="pillar-tag">Phase 2:AI Agent</span>
-        <h3>An AI agent that works when you can't</h3>
-        <p>While you're on shift, your AI agent handles the job search moments you'd otherwise miss, answering employer questions, managing scheduling, responding on your behalf. No more lost opportunities because you were doing your job.</p>
+        <span class="pillar-tag" data-i18n="pillar-2-tag">Phase 2: AI Agent</span>
+        <h3 data-i18n="pillar-2-h3">An AI agent that works when you can't</h3>
+        <p data-i18n="pillar-2-p">While you're on shift, your AI agent handles the job search moments you'd otherwise miss, answering employer questions, managing scheduling, responding on your behalf. No more lost opportunities because you were doing your job.</p>
       </div>
 
       <div class="pillar">
-
-        <span class="pillar-tag">Phase 3:Jobs &amp; Matching</span>
-        <h3>Jobs that match who you actually are</h3>
-        <p>We match roles to the right workers by real skills and real experience, not by CV. Workers apply using their Sohnus profile, and employers use your AI agent to properly assess who you are before they even meet you.</p>
+        <span class="pillar-tag" data-i18n="pillar-3-tag">Phase 3: Jobs &amp; Matching</span>
+        <h3 data-i18n="pillar-3-h3">Jobs that match who you actually are</h3>
+        <p data-i18n="pillar-3-p">We match roles to the right workers by real skills and real experience, not by CV. Workers apply using their Sohnus profile, and employers use your AI agent to properly assess who you are before they even meet you.</p>
       </div>
 
     </div>
@@ -744,13 +727,13 @@
   <div class="founders">
     <div class="founders-inner">
       <div>
-        <p class="founders-label">Who we are</p>
-        <h2 class="founders-quote">Built by your sons,<br/>for <em>your future.</em></h2>
+        <p class="founders-label" data-i18n="founders-label">Who we are</p>
+        <h2 class="founders-quote" data-i18n="founders-quote">Built by your sons,<br>for <em>your future.</em></h2>
       </div>
       <div>
-        <p class="founders-body">
-          We grew up watching our parents go to work every day, skilled, experienced, dependable. And we watched the world fail to see it. No platform that knew their name. No system that carried their reputation forward.<br/><br/>
-          <strong>We are the children of blue-collar families.</strong> We went to university, built careers, and came home every weekend. Sharp, but we never forgot where we came from.<br/><br/>
+        <p class="founders-body" data-i18n="founders-body">
+          We grew up watching our parents go to work every day, skilled, experienced, dependable. And we watched the world fail to see it. No platform that knew their name. No system that carried their reputation forward.<br><br>
+          <strong>We are the children of blue-collar families.</strong> We went to university, built careers, and came home every weekend. Sharp, but we never forgot where we came from.<br><br>
           Sohnus is what we're giving back. Not as outsiders who studied the problem. As sons who lived it.
         </p>
       </div>
@@ -759,77 +742,1154 @@
 
   <!-- WAITLIST -->
   <section class="waitlist" id="waitlist">
-    <span class="waitlist-eyebrow">Early access: join the waitlist</span>
-    <h2>Ready to be seen?</h2>
-    <p class="waitlist-sub">
+    <span class="waitlist-eyebrow" data-i18n="waitlist-eyebrow">Early access: join the waitlist</span>
+    <h2 data-i18n="waitlist-h2">Ready to be seen?</h2>
+    <p class="waitlist-sub" data-i18n="waitlist-sub">
       We're building Sohnus for workers like you, and we want you involved from day one. Join the waitlist and be among the first to own your professional identity.
     </p>
 
     <div id="form-area">
       <div class="form-grid">
-        <input type="text"  id="wl-first"   class="wl-input" placeholder="First name"    autocomplete="given-name" />
-        <input type="text"  id="wl-last"    class="wl-input" placeholder="Last name"     autocomplete="family-name" />
-        <input type="email" id="wl-email"   class="wl-input wl-full" placeholder="Email address" autocomplete="email" />
+        <input type="text"  id="wl-first"       class="wl-input"          data-i18n-ph="ph-first"   placeholder="First name"       autocomplete="given-name" />
+        <input type="text"  id="wl-last"         class="wl-input"          data-i18n-ph="ph-last"    placeholder="Last name"        autocomplete="family-name" />
+        <input type="email" id="wl-email"        class="wl-input wl-full"  data-i18n-ph="ph-email"   placeholder="Email address"    autocomplete="email" />
         <div class="wl-phone-group">
           <select id="wl-phone-code" class="wl-input wl-select wl-phone-code">
-            <option value="" disabled selected>Country code</option>
+            <option value="" disabled selected data-i18n-opt="ph-phone-code">Country code</option>
           </select>
-          <input type="tel" id="wl-phone-num" class="wl-input wl-phone-num" placeholder="Phone number" autocomplete="tel" />
+          <input type="tel" id="wl-phone-num" class="wl-input wl-phone-num" data-i18n-ph="ph-phone" placeholder="Phone number" autocomplete="tel" />
         </div>
         <select id="wl-sector" class="wl-input wl-select wl-full">
           <option value="" disabled selected>Sector</option>
         </select>
-        <input type="text" id="wl-sector-other" class="wl-input wl-full wl-other-field" placeholder="Please specify your sector" style="display:none" />
+        <input type="text" id="wl-sector-other" class="wl-input wl-full wl-other-field" data-i18n-ph="ph-sector-other" placeholder="Please specify your sector" style="display:none" />
         <select id="wl-trade" class="wl-input wl-select wl-full" disabled>
           <option value="" disabled selected>Select sector first</option>
         </select>
-        <input type="text" id="wl-trade-other" class="wl-input wl-full wl-other-field" placeholder="Please specify your trade" style="display:none" />
+        <input type="text" id="wl-trade-other" class="wl-input wl-full wl-other-field" data-i18n-ph="ph-trade-other" placeholder="Please specify your trade" style="display:none" />
         <select id="wl-country" class="wl-input wl-select">
           <option value="" disabled selected>Country</option>
-          <option>Afghanistan</option><option>Albania</option><option>Algeria</option><option>Argentina</option><option>Australia</option><option>Austria</option><option>Bahrain</option><option>Bangladesh</option><option>Belgium</option><option>Brazil</option><option>Bulgaria</option><option>Canada</option><option>Chile</option><option>China</option><option>Colombia</option><option>Croatia</option><option>Czech Republic</option><option>Denmark</option><option>Egypt</option><option>Ethiopia</option><option>Finland</option><option>France</option><option>Germany</option><option>Ghana</option><option>Greece</option><option>Hungary</option><option>India</option><option>Indonesia</option><option>Iran</option><option>Iraq</option><option>Ireland</option><option>Italy</option><option>Japan</option><option>Jordan</option><option>Kazakhstan</option><option>Kenya</option><option>Kuwait</option><option>Lebanon</option><option>Libya</option><option>Malaysia</option><option>Mexico</option><option>Morocco</option><option>Netherlands</option><option>New Zealand</option><option>Nigeria</option><option>Norway</option><option>Oman</option><option>Pakistan</option><option>Palestine</option><option>Philippines</option><option>Poland</option><option>Portugal</option><option>Qatar</option><option>Romania</option><option>Russia</option><option>Saudi Arabia</option><option>Senegal</option><option>Serbia</option><option>Singapore</option><option>South Africa</option><option>South Korea</option><option>Spain</option><option>Sri Lanka</option><option>Sudan</option><option>Sweden</option><option>Switzerland</option><option>Syria</option><option>Thailand</option><option>Tunisia</option><option>Turkey</option><option>UAE</option><option>Uganda</option><option>Ukraine</option><option>United Kingdom</option><option>United States</option><option>Vietnam</option><option>Yemen</option>
         </select>
         <select id="wl-city" class="wl-input wl-select" disabled>
           <option value="" disabled selected>Select country first</option>
         </select>
         <label class="wl-consent" id="wl-consent-label">
           <input type="checkbox" id="wl-consent" />
-          <span>I agree to the <a href="privacy.html" target="_blank">Privacy Policy</a> and consent to Sohnus contacting me about early access.</span>
+          <span data-i18n="form-consent">I agree to the <a href="privacy.html" target="_blank">Privacy Policy</a> and consent to Sohnus contacting me about early access.</span>
         </label>
         <p class="form-error" id="form-error"></p>
-        <button class="wl-btn wl-full" id="submit-btn" onclick="submitWaitlist()">Join the waitlist</button>
+        <button class="wl-btn wl-full" id="submit-btn" onclick="submitWaitlist()" data-i18n="submit-btn">Join the waitlist</button>
       </div>
-      <p class="form-note">No spam. Just a message when we're ready for you.</p>
+      <p class="form-note" data-i18n="form-note">No spam. Just a message when we're ready for you.</p>
     </div>
 
     <div class="success" id="success-block">
-      <div class="success-icon">✓</div>
-      <h3>You're on the list.</h3>
-      <p>We'll reach out when Sohnus is ready.<br/>Thank you for being part of this from the start.</p>
+      <div class="success-icon">&#10003;</div>
+      <h3 data-i18n="success-h3">You're on the list.</h3>
+      <p data-i18n="success-p">We'll reach out when Sohnus is ready.<br>Thank you for being part of this from the start.</p>
     </div>
   </section>
 
   <footer>
     <span class="footer-logo">Sohnus</span>
-
     <div class="footer-legal">
-      <span>© 2025 Sohnus. All rights reserved.</span>
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="terms.html">Terms of Service</a>
+      <span data-i18n="footer-copy">© 2025 Sohnus. All rights reserved.</span>
+      <a href="privacy.html" data-i18n="footer-privacy">Privacy Policy</a>
+      <a href="terms.html" data-i18n="footer-terms">Terms of Service</a>
     </div>
   </footer>
 
   <script>
+    /* ══════════════════════════════════════════
+       TRANSLATIONS
+    ══════════════════════════════════════════ */
+    const TRANSLATIONS = {
+      en: {
+        'page-title':      'Sohnus | The Professional Home for Blue-Collar Workers',
+        'nav-cta':         'Join the waitlist',
+        'hero-pill':       'For blue-collar workers',
+        'hero-h1':         'Blue-collar workers<br><em>seen, valued,<br>connected.</em>',
+        'hero-sub':        'We are the sons of blue-collar families. We grew up, built careers, and came back. Sohnus is what we are building for our people.',
+        'hero-btn':        'Join the waitlist',
+        'hero-note':       'We read every name on this list. You will hear from us.',
+        'pain-label':      "What we're fixing",
+        'pain-intro':      "You're good at your job.<br>The system doesn't see it.",
+        'pain-1-h3':       "You've spent years getting good at this. Nobody outside your workplace knows it.",
+        'pain-1-p':        "There's no profile for people who work with their hands. No way to show what you've built, what you know, or how long you've been doing it. To everyone else, you have to start over and prove yourself again.",
+        'pain-2-h3':       'The job was posted at 7am. By the time your shift ended, it was gone.',
+        'pain-2-p':        "Work opportunities live in WhatsApp chats and Facebook groups. They move fast. When you do reply, you're one name out of fifty, and nobody in that thread knows who you are. No history. No reputation. Just another message in a chat that's already moved on.",
+        'pain-3-h3':       'They called while you were working. Then they stopped calling.',
+        'pain-3-p':        "You get a callback, finally. They want to interview you Wednesday at 2pm. You're on shift. You explain. They say they'll find another time. You follow up. Nothing. By then they've moved on to someone else.",
+        'stats-label':     'The numbers behind what you feel',
+        'stat-1-desc':     'of blue-collar workers feel undervalued for the work they do',
+        'stat-2-desc':     'use Facebook as their primary job search channel, with no professional identity attached',
+        'stat-3-desc':     'of workers who click Apply never finish the application, the system was never built for them',
+        'building-label':  'What Sohnus is',
+        'building-head':   "Three things workers were<br>never given. We're <em>building all of them.</em>",
+        'building-sub':    "We're being upfront, this is our roadmap. What we're building first, what comes next, and where we're going.",
+        'pillar-1-tag':    'Phase 1: Identity &amp; Community',
+        'pillar-1-h3':     'A professional home for workers',
+        'pillar-1-p':      "A profile that shows who you are: your skills, your experience, proof of what you've done. A feed where you connect with workers in your trade, share what you know, and learn from people who've been where you are.",
+        'pillar-2-tag':    'Phase 2: AI Agent',
+        'pillar-2-h3':     "An AI agent that works when you can't",
+        'pillar-2-p':      "While you're on shift, your AI agent handles the job search moments you'd otherwise miss, answering employer questions, managing scheduling, responding on your behalf. No more lost opportunities because you were doing your job.",
+        'pillar-3-tag':    'Phase 3: Jobs &amp; Matching',
+        'pillar-3-h3':     'Jobs that match who you actually are',
+        'pillar-3-p':      "We match roles to the right workers by real skills and real experience, not by CV. Workers apply using their Sohnus profile, and employers use your AI agent to properly assess who you are before they even meet you.",
+        'founders-label':  'Who we are',
+        'founders-quote':  'Built by your sons,<br>for <em>your future.</em>',
+        'founders-body':   "We grew up watching our parents go to work every day, skilled, experienced, dependable. And we watched the world fail to see it. No platform that knew their name. No system that carried their reputation forward.<br><br><strong>We are the children of blue-collar families.</strong> We went to university, built careers, and came home every weekend. Sharp, but we never forgot where we came from.<br><br>Sohnus is what we're giving back. Not as outsiders who studied the problem. As sons who lived it.",
+        'waitlist-eyebrow':'Early access: join the waitlist',
+        'waitlist-h2':     'Ready to be seen?',
+        'waitlist-sub':    "We're building Sohnus for workers like you, and we want you involved from day one. Join the waitlist and be among the first to own your professional identity.",
+        'ph-first':        'First name',
+        'ph-last':         'Last name',
+        'ph-email':        'Email address',
+        'ph-phone-code':   'Country code',
+        'ph-phone':        'Phone number',
+        'ph-sector':       'Sector',
+        'ph-sector-other': 'Please specify your sector',
+        'ph-trade-disabled':'Select sector first',
+        'ph-trade':        'Select your trade',
+        'ph-trade-other':  'Please specify your trade',
+        'ph-country':      'Country',
+        'ph-city-disabled':'Select country first',
+        'ph-city':         'Select city',
+        'form-consent':    'I agree to the <a href="privacy.html" target="_blank">Privacy Policy</a> and consent to Sohnus contacting me about early access.',
+        'submit-btn':      'Join the waitlist',
+        'form-note':       "No spam. Just a message when we're ready for you.",
+        'success-h3':      "You're on the list.",
+        'success-p':       "We'll reach out when Sohnus is ready.<br>Thank you for being part of this from the start.",
+        'footer-copy':     '© 2025 Sohnus. All rights reserved.',
+        'footer-privacy':  'Privacy Policy',
+        'footer-terms':    'Terms of Service',
+        'joining':         'Joining…',
+        'err-first':       'Please enter your first name',
+        'err-last':        'Please enter your last name',
+        'err-email':       'Please enter a valid email address',
+        'err-phone-code':  'Please select a country code',
+        'err-phone':       'Please enter your phone number',
+        'err-phone-invalid':'Please enter a valid phone number (digits only, 6–15 characters)',
+        'err-sector':      'Please select your sector',
+        'err-sector-other':'Please specify your sector',
+        'err-trade-other': 'Please specify your trade',
+        'err-trade':       'Please select your trade',
+        'err-country':     'Please select your country',
+        'err-city':        'Please select your city',
+        'err-consent':     'Please agree to the Privacy Policy to continue',
+        'err-generic':     'Something went wrong. Please try again.',
+        'opt-other':       'Other',
+        'sector-labels':   {},
+        'trade-labels':    {},
+        'country-labels':  {},
+        'city-labels':     {},
+      },
+      de: {
+        'page-title':      'Sohnus | Das berufliche Zuhause für Handwerker und Fachkräfte',
+        'nav-cta':         'Zur Warteliste',
+        'hero-pill':       'Für Handwerker und Fachkräfte',
+        'hero-h1':         'Handwerker und Fachkräfte<br><em>gesehen, wertgeschätzt,<br>vernetzt.</em>',
+        'hero-sub':        'Wir kommen aus Handwerkerfamilien. Wir sind aufgewachsen, haben unseren Weg gemacht und sind zurückgekommen. Sohnus bauen wir für unsere Leute.',
+        'hero-btn':        'Zur Warteliste',
+        'hero-note':       'Wir lesen jeden Namen auf dieser Liste. Du hörst von uns.',
+        'pain-label':      'Was wir verändern wollen',
+        'pain-intro':      'Du beherrschst deinen Beruf.<br>Das System sieht dich trotzdem nicht.',
+        'pain-1-h3':       'Du hast Jahre investiert, um wirklich gut zu werden. Außerhalb deines Betriebs weiß das niemand.',
+        'pain-1-p':        'Es gibt kein Profil für Handwerker. Keine Möglichkeit zu zeigen, was du geleistet hast, was du kannst oder seit wann. Für alle anderen fängst du jedes Mal bei null an – und musst dich von Neuem beweisen.',
+        'pain-2-h3':       'Die Stelle war um sieben Uhr früh online. Als deine Schicht endete, war sie schon weg.',
+        'pain-2-p':        'Jobchancen stecken in WhatsApp-Gruppen und Facebook-Posts. Sie verschwinden schnell. Wenn du antwortest, bist du einer von fünfzig – und niemand in diesem Chat weiß, wer du bist. Kein Hintergrund. Kein Ruf. Nur eine weitere Nachricht in einem Gespräch, das schon weitergeht.',
+        'pain-3-h3':       'Sie riefen an, während du auf der Arbeit warst. Danach nicht mehr.',
+        'pain-3-p':        'Endlich ein Rückruf. Ein Vorstellungsgespräch am Mittwoch um 14 Uhr. Du hast Schicht. Du erklärst die Situation. Sie suchen einen anderen Termin. Du fragst nach. Nichts. In der Zwischenzeit haben sie sich längst für jemand anderen entschieden.',
+        'stats-label':     'Zahlen, die sagen, was du spürst',
+        'stat-1-desc':     'der Handwerker und Fachkräfte fühlen sich für ihre Arbeit nicht angemessen anerkannt',
+        'stat-2-desc':     'suchen über Facebook nach Arbeit – ohne jede professionelle Identität dahinter',
+        'stat-3-desc':     'der Bewerber, die auf "Bewerben" klicken, brechen ab. Dieses System wurde nie für sie gemacht.',
+        'building-label':  'Was Sohnus ist',
+        'building-head':   'Drei Dinge, die Handwerker nie bekommen haben. Wir <em>bauen sie alle.</em>',
+        'building-sub':    'Wir reden offen darüber, was wir vorhaben. Das ist unser Plan: was wir zuerst bauen, was danach kommt und wo wir hinwollen.',
+        'pillar-1-tag':    'Phase 1: Identität &amp; Community',
+        'pillar-1-h3':     'Ein berufliches Zuhause, das wirklich zu dir passt',
+        'pillar-1-p':      'Ein Profil, das zeigt, wer du bist: deine Fähigkeiten, deine Erfahrung, echte Belege für das, was du geleistet hast. Und eine Community, wo du dich mit Leuten aus deinem Handwerk vernetzt, teilst was du weißt, und von Menschen lernst, die schon da waren, wo du jetzt stehst.',
+        'pillar-2-tag':    'Phase 2: KI-Agent',
+        'pillar-2-h3':     'Dein KI-Agent übernimmt, wenn du auf der Arbeit bist',
+        'pillar-2-p':      'Während du auf Schicht bist, kümmert sich dein KI-Agent um alles, was du sonst verpassen würdest: beantwortet Fragen von Arbeitgebern, koordiniert Termine, antwortet in deinem Namen. Keine verpassten Chancen mehr, nur weil du deinen Job gemacht hast.',
+        'pillar-3-tag':    'Phase 3: Jobs &amp; Vermittlung',
+        'pillar-3-h3':     'Jobs, die zu deinen echten Fähigkeiten passen – nicht zum Lebenslauf',
+        'pillar-3-p':      'Wir bringen die richtigen Stellen zu den richtigen Menschen – nach echten Fähigkeiten und echter Erfahrung, nicht nach Papier. Du bewirbst dich mit deinem Sohnus-Profil, und Arbeitgeber nutzen deinen KI-Agenten, um dich wirklich einschätzen zu können, bevor sie dich treffen.',
+        'founders-label':  'Wer wir sind',
+        'founders-quote':  'Gebaut von euren Söhnen,<br>für <em>eure Zukunft.</em>',
+        'founders-body':   'Wir sind aufgewachsen und haben zugeschaut, wie unsere Eltern jeden Tag zur Arbeit gingen – kompetent, erfahren, verlässlich. Und wir haben gesehen, wie die Welt das einfach nicht wahrnahm. Keine Plattform, die ihren Namen kannte. Kein System, das ihren Ruf mitnahm.<br><br><strong>Wir kommen aus Handwerkerfamilien.</strong> Wir haben studiert, Karriere gemacht und sind jedes Wochenende nach Hause gefahren. Wir haben viel gelernt – aber nie vergessen, woher wir kommen.<br><br>Sohnus ist das, was wir zurückgeben. Nicht als Außenstehende, die ein Problem analysiert haben. Als Söhne, die es selbst erlebt haben.',
+        'waitlist-eyebrow':'Früher Zugang: jetzt eintragen',
+        'waitlist-h2':     'Bereit, endlich wahrgenommen zu werden?',
+        'waitlist-sub':    'Wir bauen Sohnus für Handwerker wie dich – und wollen, dass du von Anfang an dabei bist. Trag dich ein und gehöre zu den Ersten, die ihre berufliche Identität selbst in die Hand nehmen.',
+        'ph-first':        'Vorname',
+        'ph-last':         'Nachname',
+        'ph-email':        'E-Mail-Adresse',
+        'ph-phone-code':   'Ländervorwahl',
+        'ph-phone':        'Telefonnummer',
+        'ph-sector':       'Branche',
+        'ph-sector-other': 'Bitte gib deine Branche an',
+        'ph-trade-disabled':'Zuerst Branche auswählen',
+        'ph-trade':        'Beruf auswählen',
+        'ph-trade-other':  'Bitte gib deinen Beruf an',
+        'ph-country':      'Land',
+        'ph-city-disabled':'Zuerst Land auswählen',
+        'ph-city':         'Stadt auswählen',
+        'form-consent':    'Ich stimme der <a href="privacy.html" target="_blank">Datenschutzrichtlinie</a> zu und willige ein, dass Sohnus mich bezüglich des frühen Zugangs kontaktiert.',
+        'submit-btn':      'Zur Warteliste',
+        'form-note':       'Kein Spam. Eine einzige Nachricht, wenn es so weit ist.',
+        'success-h3':      'Du bist dabei.',
+        'success-p':       'Wir melden uns, wenn Sohnus bereit ist.<br>Danke, dass du von Anfang an dabei bist.',
+        'footer-copy':     '© 2025 Sohnus. Alle Rechte vorbehalten.',
+        'footer-privacy':  'Datenschutzrichtlinie',
+        'footer-terms':    'Nutzungsbedingungen',
+        'joining':         'Wird eingetragen…',
+        'err-first':       'Bitte gib deinen Vornamen ein',
+        'err-last':        'Bitte gib deinen Nachnamen ein',
+        'err-email':       'Bitte gib eine gültige E-Mail-Adresse ein',
+        'err-phone-code':  'Bitte wähle eine Ländervorwahl',
+        'err-phone':       'Bitte gib deine Telefonnummer ein',
+        'err-phone-invalid':'Bitte gib eine gültige Telefonnummer ein (nur Ziffern, 6–15 Zeichen)',
+        'err-sector':      'Bitte wähle deine Branche',
+        'err-sector-other':'Bitte gib deine Branche an',
+        'err-trade-other': 'Bitte gib deinen Beruf an',
+        'err-trade':       'Bitte wähle deinen Beruf',
+        'err-country':     'Bitte wähle dein Land',
+        'err-city':        'Bitte wähle deine Stadt',
+        'err-consent':     'Bitte stimme der Datenschutzrichtlinie zu, um fortzufahren',
+        'err-generic':     'Etwas ist schiefgelaufen. Bitte versuche es erneut.',
+        'opt-other':       'Sonstiges',
+        'sector-labels':   {
+          'Construction & Real Estate': 'Bau & Immobilien',
+          'Electrical':                 'Elektrotechnik',
+          'Plumbing & HVAC':            'Sanitär & Klimatechnik',
+          'Hospitality & Food Service': 'Gastgewerbe & Gastronomie',
+          'Automotive & Mechanical':    'Kfz & Maschinenbau',
+          'Transport & Logistics':      'Transport & Logistik',
+          'Manufacturing & Industrial': 'Produktion & Industrie',
+          'Oil, Gas & Energy':          'Öl, Gas & Energie',
+          'Agriculture & Farming':      'Landwirtschaft',
+          'Landscaping & Outdoor':      'Garten & Außenanlagen',
+          'Cleaning & Facilities':      'Reinigung & Gebäudedienste',
+          'Security & Safety':          'Sicherheit & Brandschutz',
+          'Healthcare Support':         'Gesundheitshilfe',
+          'Marine & Offshore':          'Marine & Offshore',
+          'Printing & Packaging':       'Druck & Verpackung',
+          'Textiles & Garments':        'Textil & Bekleidung',
+          'Food Processing':            'Lebensmittelverarbeitung',
+          'Mining & Quarrying':         'Bergbau & Rohstoffgewinnung',
+          'Telecommunications':         'Telekommunikation',
+          'Other':                      'Sonstiges',
+        },
+        'trade-labels': {
+          'Carpenter':'Zimmermann','Bricklayer / Mason':'Maurer','Plasterer':'Putzer / Stuckateur',
+          'Tiler':'Fliesenleger','Painter & Decorator':'Maler & Lackierer','Roofer':'Dachdecker',
+          'Scaffolder':'Gerüstbauer','Glazier':'Glaser','Flooring Installer':'Bodenleger',
+          'Steel Fixer':'Betonstahlbauer','Formwork Carpenter':'Schalungsbauer',
+          'Concrete Finisher':'Betonbauer','Site Laborer':'Bauhelfer',
+          'Demolition Worker':'Abbrucharbeiter','Waterproofing Specialist':'Abdichtungsfachmann',
+          'Insulation Installer':'Isolierer','Drywall / Partition Installer':'Trockenbauer',
+          'Quantity Surveyor':'Baukalkulator','Site Foreman':'Polier / Baustellenleiter',
+          'Electrician':'Elektriker','Electrical Technician':'Elektrotechniker',
+          'Cable Installer':'Kabelmonteur','Panel Wireman':'Schaltanlagenbauer',
+          'Solar Panel Installer':'Solaranlagen-Monteur','Elevator / Lift Technician':'Aufzugstechniker',
+          'Lighting Technician':'Lichttechniker','Instrumentation Technician':'Messtechniker',
+          'Fire Alarm Technician':'Brandmeldeanlagen-Techniker','CCTV Technician':'Videoüberwachungstechniker',
+          'Low Voltage Technician':'Niederspannungstechniker','Generator Technician':'Generatortechniker',
+          'Plumber':'Klempner / Installateur','Pipefitter':'Rohrleitungsbauer',
+          'HVAC Technician':'Heizungs- und Lüftungstechniker','Refrigeration Mechanic':'Kältetechniker',
+          'Boiler Technician':'Heizungstechniker','Gas Fitter':'Gasinstallateur',
+          'Fire Sprinkler Installer':'Sprinkleranlagen-Monteur',
+          'Water Treatment Technician':'Wasseraufbereitungstechniker','Sanitation Technician':'Sanitärtechniker',
+          'Chef':'Koch / Chefkoch','Sous Chef':'Sous-Chef','Line Cook':'Posten-Koch',
+          'Pastry Chef':'Konditor','Baker':'Bäcker','Butcher':'Fleischer / Metzger',
+          'Barista':'Barista','Bartender':'Barkeeper','Waiter / Waitress':'Kellner / Kellnerin',
+          'Room Attendant / Housekeeper':'Zimmerreinigung / Hauswirtschaft',
+          'Dishwasher / Steward':'Spüler / Steward','Hotel Porter / Bellboy':'Hotelportier / Page',
+          'Laundry Attendant':'Wäschereifachkraft','Kitchen Helper':'Küchenhelfer',
+          'Catering Assistant':'Cateringhelfer','Restaurant Manager':'Restaurantleiter',
+          'Auto Mechanic / Technician':'Kfz-Mechaniker / -Techniker',
+          'Auto Body Repair Technician':'Karosseriebauer','Tire Technician':'Reifentechniker',
+          'Spray Painter':'Lackierer','Diagnostic Technician':'Diagnosetechniker',
+          'Heavy Equipment Mechanic':'Baumaschinen-Mechaniker','Motorcycle Mechanic':'Motorradmechaniker',
+          'Truck Mechanic':'LKW-Mechaniker','Transmission Specialist':'Getriebespezialist',
+          'Auto Electrician':'Kfz-Elektriker','Car Detailer':'Fahrzeugaufbereiter',
+          'Truck Driver':'LKW-Fahrer','Bus Driver':'Busfahrer',
+          'Taxi / Rideshare Driver':'Taxifahrer / Fahrdienstfahrer',
+          'Delivery Driver':'Zusteller / Lieferfahrer','Forklift Operator':'Gabelstaplerfahrer',
+          'Crane Operator':'Kranführer','Warehouse Operative':'Lagerarbeiter',
+          'Freight Handler':'Frachtabfertiger','Port / Dock Worker':'Hafenarbeiter',
+          'Train Driver':'Lokführer','Machine Operator':'Maschinenführer',
+          'CNC Operator / Machinist':'CNC-Fachkraft / Zerspanungsmechaniker','Welder':'Schweißer',
+          'Metal Fabricator':'Metallbauer','Quality Control Inspector':'Qualitätsprüfer',
+          'Assembly Line Worker':'Fließbandarbeiter','Packaging Worker':'Verpackungshelfer',
+          'Press Operator':'Pressenführer','Injection Moulding Operator':'Kunststoffverarbeiter',
+          'Tool & Die Maker':'Werkzeugmacher','Industrial Maintenance Technician':'Industriemechaniker',
+          'Rig Worker / Roughneck':'Bohrarbeiter / Roughneck','Driller':'Bohrer',
+          'Pipeline Welder':'Rohrschweißer','Process Operator':'Verfahrenstechniker',
+          'Instrumentation & Control Technician':'MSR-Techniker',
+          'HSE / Safety Officer':'HSE / Sicherheitsbeauftragter','Maintenance Technician':'Wartungstechniker',
+          'Tank Farm Operator':'Tanklagerwart','Subsea Technician':'Unterwassertechniker',
+          'Wind Turbine Technician':'Windkraftanlagen-Techniker','Solar Energy Technician':'Solarenergietechniker',
+          'Farm Worker':'Landarbeiter','Greenhouse Worker':'Gewächshausarbeiter',
+          'Irrigation Technician':'Bewässerungstechniker','Livestock Worker':'Tierwirt',
+          'Poultry Worker':'Geflügelarbeiter','Fisherman / Aquaculture Worker':'Fischer / Aquakulturarbeiter',
+          'Tractor / Farm Equipment Operator':'Traktorfahrer / Landmaschinenführer',
+          'Pest Control Technician':'Schädlingsbekämpfer','Agricultural Sprayer':'Pflanzenschutzmittelbediener',
+          'Landscaper / Groundskeeper':'Landschaftsgärtner / Platzwart','Gardener':'Gärtner',
+          'Tree Surgeon / Arborist':'Baumpfleger / Arborist','Irrigation Installer':'Bewässerungsanlagen-Monteur',
+          'Swimming Pool Technician':'Schwimmbadtechniker','Sports Turf Technician':'Rasenpfleger',
+          'Hardscaping Worker':'Pflaster- und Tiefbauarbeiter',
+          'Commercial Cleaner':'Gebäudereiniger','Domestic / House Cleaner':'Haushaltshilfe',
+          'Industrial Cleaner':'Industriereiniger','Window Cleaner':'Fensterreiniger',
+          'Waste Collector / Refuse Worker':'Müllwerker',
+          'Facility Maintenance Worker':'Hausmeister / Facility-Manager',
+          'Janitorial Supervisor':'Reinigungsleiter',
+          'Security Guard':'Sicherheitsmitarbeiter','Loss Prevention Officer':'Ladendetektiv',
+          'CCTV Operator':'Videoüberwachungsoperator','Door Supervisor / Bouncer':'Türsteher',
+          'Traffic Controller':'Verkehrsregler','Fire Safety Officer':'Brandschutzbeauftragter',
+          'Armored Vehicle Guard':'Geldtransportfahrer','Event Security':'Veranstaltungssicherheit',
+          'Nursing Assistant / CNA':'Pflegehelfer / Krankenpflegehelfer',
+          'Healthcare Support Worker':'Gesundheits- und Pflegehelfer',
+          'Ambulance Driver / EMT':'Rettungsfahrer / Sanitäter','Hospital Orderly':'Krankenhaushelfer',
+          'Medical Equipment Technician':'Medizintechniker',
+          'Sterilization Technician':'Sterilisationsassistent','Pharmacy Assistant':'Apothekenhelfer',
+          'Dental Assistant':'Zahnmedizinische Fachangestellte',
+          'Home Care Worker':'Pflegekraft in der häuslichen Pflege',
+          'Seafarer / Sailor':'Seemann / Matrose','Marine Mechanic':'Schiffsmechaniker',
+          'Ship Builder / Fabricator':'Schiffbauer','Offshore Rig Worker':'Offshore-Bohrarbeiter',
+          'Diver':'Taucher','Deck Hand':'Decksmann','Marine Electrician':'Schiffselektriker',
+          'Port Equipment Operator':'Hafengerätebediener',
+          'Press / Print Operator':'Drucker / Maschinenführer Druck','Bindery Worker':'Buchbinder',
+          'Packaging Operator':'Verpackungsmaschinenbediener',
+          'Prepress Technician':'Medientechnologe Druckvorstufe','Screen Printer':'Siebdrucker',
+          'Tailor / Seamstress':'Schneider / Schneiderin','Garment Worker':'Bekleidungsarbeiter',
+          'Textile Machine Operator':'Textilmaschinenbediener','Embroidery Worker':'Sticker',
+          'Pattern Cutter':'Schnitttechniker','Leather Worker':'Lederarbeiter',
+          'Food Production Worker':'Lebensmittelproduktionsarbeiter',
+          'Meat Processing Worker':'Fleischverarbeitungsarbeiter',
+          'Bakery Production Worker':'Bäckereiproduktionsarbeiter','Dairy Worker':'Molkereimitarbeiter',
+          'Beverage Production Worker':'Getränkeproduktionsarbeiter','Cold Storage Worker':'Kühlhausarbeiter',
+          'Quality Control Inspector (Food)':'Qualitätsprüfer (Lebensmittel)',
+          'Underground Miner':'Untertagebauer','Surface Miner':'Tagebauarbeiter',
+          'Blaster / Shot Firer':'Sprengmeister','Ore Processing Worker':'Erz-Aufbereitungsarbeiter',
+          'Mine Equipment Operator':'Bergbaumaschinen-Führer','Safety Inspector':'Sicherheitsinspektor',
+          'Tower Climber / Rigger':'Turmkletterer / Rigger','Fibre Optic Technician':'Glasfasertechniker',
+          'Network Cable Installer':'Netzwerkkabelmonteur',
+          'Satellite Dish Installer':'Satellitenanlagen-Monteur',
+          'IT Hardware Technician':'IT-Hardwaretechniker',
+        },
+        'country-labels': {
+          'Afghanistan':'Afghanistan','Albania':'Albanien','Algeria':'Algerien',
+          'Argentina':'Argentinien','Australia':'Australien','Austria':'Österreich',
+          'Bahrain':'Bahrain','Bangladesh':'Bangladesch','Belgium':'Belgien',
+          'Brazil':'Brasilien','Bulgaria':'Bulgarien','Canada':'Kanada',
+          'Chile':'Chile','China':'China','Colombia':'Kolumbien','Croatia':'Kroatien',
+          'Czech Republic':'Tschechische Republik','Denmark':'Dänemark',
+          'Egypt':'Ägypten','Ethiopia':'Äthiopien','Finland':'Finnland',
+          'France':'Frankreich','Germany':'Deutschland','Ghana':'Ghana',
+          'Greece':'Griechenland','Hungary':'Ungarn','India':'Indien',
+          'Indonesia':'Indonesien','Iran':'Iran','Iraq':'Irak','Ireland':'Irland',
+          'Italy':'Italien','Japan':'Japan','Jordan':'Jordanien','Kazakhstan':'Kasachstan',
+          'Kenya':'Kenia','Kuwait':'Kuwait','Lebanon':'Libanon','Libya':'Libyen',
+          'Malaysia':'Malaysia','Mexico':'Mexiko','Morocco':'Marokko',
+          'Netherlands':'Niederlande','New Zealand':'Neuseeland','Nigeria':'Nigeria',
+          'Norway':'Norwegen','Oman':'Oman','Pakistan':'Pakistan','Palestine':'Palästina',
+          'Philippines':'Philippinen','Poland':'Polen','Portugal':'Portugal',
+          'Qatar':'Katar','Romania':'Rumänien','Russia':'Russland',
+          'Saudi Arabia':'Saudi-Arabien','Senegal':'Senegal','Serbia':'Serbien',
+          'Singapore':'Singapur','South Africa':'Südafrika','South Korea':'Südkorea',
+          'Spain':'Spanien','Sri Lanka':'Sri Lanka','Sudan':'Sudan','Sweden':'Schweden',
+          'Switzerland':'Schweiz','Syria':'Syrien','Thailand':'Thailand',
+          'Tunisia':'Tunesien','Turkey':'Türkei','UAE':'Vereinigte Arabische Emirate',
+          'Uganda':'Uganda','Ukraine':'Ukraine','United Kingdom':'Vereinigtes Königreich',
+          'United States':'Vereinigte Staaten','Vietnam':'Vietnam','Yemen':'Jemen',
+        },
+        'city-labels': {
+          'Munich':'München','Cologne':'Köln','Hanover':'Hannover','Nuremberg':'Nürnberg',
+          'Vienna':'Wien','Zurich':'Zürich','Geneva':'Genf',
+          'Rome':'Rom','Naples':'Neapel','Florence':'Florenz','Venice':'Venedig','Turin':'Turin',
+          'Athens':'Athen','Cairo':'Kairo','Moscow':'Moskau','Warsaw':'Warschau',
+          'Prague':'Prag','Brussels':'Brüssel','Tokyo':'Tokio','Beijing':'Peking',
+          'Kyiv':'Kiew','Lisbon':'Lissabon','Copenhagen':'Kopenhagen',
+          'Bucharest':'Bukarest','Belgrade':'Belgrad',
+          'Riyadh':'Riad','Jeddah':'Dschidda','Mecca':'Mekka','Medina':'Medina',
+          'Damascus':'Damaskus','Baghdad':'Bagdad','Tehran':'Teheran',
+          'Saint Petersburg':'Sankt Petersburg','Addis Ababa':'Addis Abeba',
+          'Kuwait City':'Kuwait-Stadt','Ho Chi Minh City':'Ho-Chi-Minh-Stadt',
+        },
+      },
+      es: {
+        'page-title':      'Sohnus | El hogar profesional para trabajadores de oficio',
+        'nav-cta':         'Únete a la lista de espera',
+        'hero-pill':       'Para trabajadores de oficio',
+        'hero-h1':         'Trabajadores de oficio<br><em>vistos, reconocidos,<br>conectados.</em>',
+        'hero-sub':        'Somos hijos de familias trabajadoras. Crecimos, nos abrimos camino y volvimos. Sohnus es lo que estamos construyendo para los nuestros.',
+        'hero-btn':        'Únete a la lista de espera',
+        'hero-note':       'Leemos cada nombre en esa lista. Vas a saber de nosotros.',
+        'pain-label':      'Lo que queremos cambiar',
+        'pain-intro':      'Eres un profesional en lo tuyo.<br>Pero el sistema no te ve a ti.',
+        'pain-1-h3':       'Llevas años desarrollando tu oficio. Fuera de tu trabajo, nadie lo sabe.',
+        'pain-1-p':        'No existe un perfil profesional para quienes trabajan con las manos. No hay forma de mostrar lo que has logrado, lo que sabes o cuántos años llevas en esto. Ante los demás, siempre empiezas de cero y tienes que volver a demostrar quién eres.',
+        'pain-2-h3':       'El empleo se publicó a las 7 de la mañana. Cuando saliste de tu turno, ya había desaparecido.',
+        'pain-2-p':        'Las oportunidades de trabajo viven en grupos de WhatsApp y páginas de Facebook. Se mueven rápido. Cuando contestas, eres uno más entre cincuenta, y nadie en ese hilo sabe quién eres. Sin trayectoria. Sin reputación. Solo otro mensaje en una conversación que ya pasó de página.',
+        'pain-3-h3':       'Llamaron mientras estabas en tu turno. Y después, nada.',
+        'pain-3-p':        'Por fin te devuelven la llamada. Quieren entrevistarte el miércoles a las dos. Tienes turno. Lo explicas. Dicen que buscan otro horario. Haces seguimiento. Silencio. Para entonces ya eligieron a alguien más.',
+        'stats-label':     'Los números que confirman lo que ya sabías',
+        'stat-1-desc':     'de los trabajadores de oficio sienten que su trabajo no recibe el reconocimiento que merece',
+        'stat-2-desc':     'buscan trabajo a través de Facebook, sin ninguna identidad profesional que los respalde',
+        'stat-3-desc':     'de quienes hacen clic en "Postular" nunca terminan la solicitud. Este sistema no fue hecho para ellos.',
+        'building-label':  'Qué es Sohnus',
+        'building-head':   'Tres cosas que siempre les faltaron a los trabajadores. Las estamos <em>construyendo todas.</em>',
+        'building-sub':    'No ocultamos nada. Este es nuestro plan: lo que construimos primero, lo que viene después y adónde queremos llegar.',
+        'pillar-1-tag':    'Fase 1: Identidad y Comunidad',
+        'pillar-1-h3':     'Un hogar profesional que por fin te representa',
+        'pillar-1-p':      'Un perfil que cuenta tu historia: tus habilidades, tu experiencia, prueba de lo que has logrado. Y una comunidad donde te conectas con gente de tu oficio, compartes lo que sabes y aprendes de quienes ya han estado donde estás.',
+        'pillar-2-tag':    'Fase 2: Agente de IA',
+        'pillar-2-h3':     'Tu agente de IA trabaja mientras tú estás en tu turno',
+        'pillar-2-p':      'Mientras cumples tu turno, tu agente de IA se encarga de lo que te perderías: responde preguntas de los empleadores, coordina horarios, habla en tu nombre. No más oportunidades perdidas por el simple hecho de estar trabajando.',
+        'pillar-3-tag':    'Fase 3: Empleos y Conexión',
+        'pillar-3-h3':     'Empleos que te buscan por lo que realmente sabes hacer',
+        'pillar-3-p':      'Conectamos cada oportunidad con la persona adecuada según habilidades y experiencia reales, no por cómo quedó el currículum. Te postulas con tu perfil de Sohnus, y los empleadores usan tu agente de IA para entender quién eres de verdad antes de conocerte.',
+        'founders-label':  'Quiénes somos',
+        'founders-quote':  'Hecho por sus hijos,<br>para <em>su futuro.</em>',
+        'founders-body':   'Crecimos viendo a nuestros padres ir al trabajo cada día: hábiles, con experiencia, confiables. Y vimos cómo el mundo no los veía. Sin plataforma que los conociera. Sin sistema que guardara su trayectoria.<br><br><strong>Somos hijos de familias trabajadoras.</strong> Fuimos a la universidad, construimos nuestro camino y volvimos a casa cada fin de semana. Aprendimos mucho, pero nunca olvidamos de dónde venimos.<br><br>Sohnus es lo que les estamos devolviendo. No como extraños que estudiaron el problema desde afuera. Como hijos que lo vivieron por dentro.',
+        'waitlist-eyebrow':'Acceso anticipado: apúntate ya',
+        'waitlist-h2':     '¿Listo para que te reconozcan como mereces?',
+        'waitlist-sub':    'Estamos construyendo Sohnus para trabajadores como tú, y queremos que seas parte de esto desde el primer día. Únete a la lista de espera y sé de los primeros en tener una identidad profesional que te haga justicia.',
+        'ph-first':        'Nombre',
+        'ph-last':         'Apellido',
+        'ph-email':        'Correo electrónico',
+        'ph-phone-code':   'Código de país',
+        'ph-phone':        'Número de teléfono',
+        'ph-sector':       'Sector',
+        'ph-sector-other': 'Por favor especifica tu sector',
+        'ph-trade-disabled':'Primero selecciona el sector',
+        'ph-trade':        'Selecciona tu oficio',
+        'ph-trade-other':  'Por favor especifica tu oficio',
+        'ph-country':      'País',
+        'ph-city-disabled':'Primero selecciona el país',
+        'ph-city':         'Selecciona la ciudad',
+        'form-consent':    'Acepto la <a href="privacy.html" target="_blank">Política de Privacidad</a> y doy mi consentimiento para que Sohnus me contacte sobre el acceso anticipado.',
+        'submit-btn':      'Únete a la lista de espera',
+        'form-note':       'Sin spam. Un solo mensaje cuando estemos listos.',
+        'success-h3':      'Ya estás en la lista.',
+        'success-p':       'Te escribiremos cuando Sohnus esté listo.<br>Gracias por estar desde el principio.',
+        'footer-copy':     '© 2025 Sohnus. Todos los derechos reservados.',
+        'footer-privacy':  'Política de Privacidad',
+        'footer-terms':    'Términos de Servicio',
+        'joining':         'Enviando…',
+        'err-first':       'Por favor ingresa tu nombre',
+        'err-last':        'Por favor ingresa tu apellido',
+        'err-email':       'Por favor ingresa un correo electrónico válido',
+        'err-phone-code':  'Por favor selecciona un código de país',
+        'err-phone':       'Por favor ingresa tu número de teléfono',
+        'err-phone-invalid':'Por favor ingresa un número de teléfono válido (solo dígitos, 6–15 caracteres)',
+        'err-sector':      'Por favor selecciona tu sector',
+        'err-sector-other':'Por favor especifica tu sector',
+        'err-trade-other': 'Por favor especifica tu oficio',
+        'err-trade':       'Por favor selecciona tu oficio',
+        'err-country':     'Por favor selecciona tu país',
+        'err-city':        'Por favor selecciona tu ciudad',
+        'err-consent':     'Por favor acepta la Política de Privacidad para continuar',
+        'err-generic':     'Algo salió mal. Por favor inténtalo de nuevo.',
+        'opt-other':       'Otro',
+        'sector-labels':   {
+          'Construction & Real Estate': 'Construcción e Inmobiliaria',
+          'Electrical':                 'Electricidad',
+          'Plumbing & HVAC':            'Fontanería y Climatización',
+          'Hospitality & Food Service': 'Hostelería y Restauración',
+          'Automotive & Mechanical':    'Automoción y Mecánica',
+          'Transport & Logistics':      'Transporte y Logística',
+          'Manufacturing & Industrial': 'Manufactura e Industria',
+          'Oil, Gas & Energy':          'Petróleo, Gas y Energía',
+          'Agriculture & Farming':      'Agricultura y Ganadería',
+          'Landscaping & Outdoor':      'Jardinería y Paisajismo',
+          'Cleaning & Facilities':      'Limpieza y Mantenimiento',
+          'Security & Safety':          'Seguridad y Protección',
+          'Healthcare Support':         'Auxiliar Sanitario',
+          'Marine & Offshore':          'Marina y Plataformas',
+          'Printing & Packaging':       'Imprenta y Embalaje',
+          'Textiles & Garments':        'Textil y Confección',
+          'Food Processing':            'Industria Alimentaria',
+          'Mining & Quarrying':         'Minería y Extracción',
+          'Telecommunications':         'Telecomunicaciones',
+          'Other':                      'Otro',
+        },
+        'trade-labels': {
+          'Carpenter':'Carpintero','Bricklayer / Mason':'Albañil',
+          'Plasterer':'Enlucidor / Yesero','Tiler':'Alicatador / Solador',
+          'Painter & Decorator':'Pintor y Decorador','Roofer':'Techador',
+          'Scaffolder':'Montador de Andamios','Glazier':'Cristalero / Vidriero',
+          'Flooring Installer':'Instalador de Suelos','Steel Fixer':'Ferrallista',
+          'Formwork Carpenter':'Encofrador','Concrete Finisher':'Acabador de Hormigón',
+          'Site Laborer':'Peón de Obra','Demolition Worker':'Trabajador de Demolición',
+          'Waterproofing Specialist':'Especialista en Impermeabilización',
+          'Insulation Installer':'Instalador de Aislamiento',
+          'Drywall / Partition Installer':'Instalador de Pladur / Tabiques',
+          'Quantity Surveyor':'Medidor de Obras','Site Foreman':'Encargado de Obra',
+          'Electrician':'Electricista','Electrical Technician':'Técnico Electricista',
+          'Cable Installer':'Instalador de Cables',
+          'Panel Wireman':'Montador de Cuadros Eléctricos',
+          'Solar Panel Installer':'Instalador de Paneles Solares',
+          'Elevator / Lift Technician':'Técnico de Ascensores',
+          'Lighting Technician':'Técnico de Iluminación',
+          'Instrumentation Technician':'Técnico de Instrumentación',
+          'Fire Alarm Technician':'Técnico de Alarmas contra Incendios',
+          'CCTV Technician':'Técnico de Videovigilancia',
+          'Low Voltage Technician':'Técnico de Baja Tensión',
+          'Generator Technician':'Técnico de Generadores',
+          'Plumber':'Fontanero','Pipefitter':'Montador de Tuberías',
+          'HVAC Technician':'Técnico de Climatización',
+          'Refrigeration Mechanic':'Mecánico de Refrigeración',
+          'Boiler Technician':'Técnico de Calderas','Gas Fitter':'Instalador de Gas',
+          'Fire Sprinkler Installer':'Instalador de Sistemas Contra Incendios',
+          'Water Treatment Technician':'Técnico de Tratamiento de Agua',
+          'Sanitation Technician':'Técnico Sanitario',
+          'Chef':'Chef / Cocinero Jefe','Sous Chef':'Sous Chef',
+          'Line Cook':'Cocinero de Partida','Pastry Chef':'Pastelero / Repostero',
+          'Baker':'Panadero','Butcher':'Carnicero','Barista':'Barista',
+          'Bartender':'Barman / Camarero de Barra','Waiter / Waitress':'Camarero / Camarera',
+          'Room Attendant / Housekeeper':'Camarero/a de Pisos',
+          'Dishwasher / Steward':'Fregaplatos / Steward',
+          'Hotel Porter / Bellboy':'Botones / Portero de Hotel',
+          'Laundry Attendant':'Operario de Lavandería','Kitchen Helper':'Ayudante de Cocina',
+          'Catering Assistant':'Auxiliar de Catering',
+          'Restaurant Manager':'Jefe de Sala / Gerente de Restaurante',
+          'Auto Mechanic / Technician':'Mecánico de Automóviles',
+          'Auto Body Repair Technician':'Chapista / Carrocero',
+          'Tire Technician':'Técnico de Neumáticos','Spray Painter':'Pintor de Carrocería',
+          'Diagnostic Technician':'Técnico de Diagnóstico',
+          'Heavy Equipment Mechanic':'Mecánico de Maquinaria Pesada',
+          'Motorcycle Mechanic':'Mecánico de Motos','Truck Mechanic':'Mecánico de Camiones',
+          'Transmission Specialist':'Especialista en Transmisiones',
+          'Auto Electrician':'Electricista de Automoción','Car Detailer':'Preparador de Vehículos',
+          'Truck Driver':'Camionero','Bus Driver':'Conductor de Autobús',
+          'Taxi / Rideshare Driver':'Taxista / Conductor VTC','Delivery Driver':'Repartidor',
+          'Forklift Operator':'Carretillero / Operador de Carretilla','Crane Operator':'Gruista',
+          'Warehouse Operative':'Operario de Almacén',
+          'Freight Handler':'Manipulador de Mercancías',
+          'Port / Dock Worker':'Estibador / Trabajador Portuario','Train Driver':'Maquinista de Tren',
+          'Machine Operator':'Operario de Máquinas',
+          'CNC Operator / Machinist':'Operario CNC / Fresador','Welder':'Soldador',
+          'Metal Fabricator':'Calderero / Metalista',
+          'Quality Control Inspector':'Inspector de Calidad',
+          'Assembly Line Worker':'Operario de Línea de Montaje',
+          'Packaging Worker':'Operario de Envasado','Press Operator':'Operario de Prensa',
+          'Injection Moulding Operator':'Operario de Inyección de Plástico',
+          'Tool & Die Maker':'Matricero / Moldeador',
+          'Industrial Maintenance Technician':'Técnico de Mantenimiento Industrial',
+          'Rig Worker / Roughneck':'Perforador / Trabajador de Plataforma',
+          'Driller':'Perforista','Pipeline Welder':'Soldador de Tuberías',
+          'Process Operator':'Operador de Proceso',
+          'Instrumentation & Control Technician':'Técnico de Instrumentación y Control',
+          'HSE / Safety Officer':'Técnico de Seguridad y Salud (HSE)',
+          'Maintenance Technician':'Técnico de Mantenimiento',
+          'Tank Farm Operator':'Operador de Parque de Tanques',
+          'Subsea Technician':'Técnico Submarino',
+          'Wind Turbine Technician':'Técnico de Aerogeneradores',
+          'Solar Energy Technician':'Técnico de Energía Solar',
+          'Farm Worker':'Jornalero / Trabajador Agrícola',
+          'Greenhouse Worker':'Trabajador de Invernadero',
+          'Irrigation Technician':'Técnico de Riego',
+          'Livestock Worker':'Ganadero / Trabajador Pecuario','Poultry Worker':'Avicultor',
+          'Fisherman / Aquaculture Worker':'Pescador / Acuicultor',
+          'Tractor / Farm Equipment Operator':'Tractorista / Operador de Maquinaria Agrícola',
+          'Pest Control Technician':'Técnico de Control de Plagas',
+          'Agricultural Sprayer':'Aplicador de Fitosanitarios',
+          'Landscaper / Groundskeeper':'Jardinero / Paisajista','Gardener':'Jardinero',
+          'Tree Surgeon / Arborist':'Arboricultor / Podador',
+          'Irrigation Installer':'Instalador de Riego',
+          'Swimming Pool Technician':'Técnico de Piscinas',
+          'Sports Turf Technician':'Técnico de Césped Deportivo',
+          'Hardscaping Worker':'Trabajador de Pavimentación',
+          'Commercial Cleaner':'Limpiador Comercial',
+          'Domestic / House Cleaner':'Empleado/a del Hogar',
+          'Industrial Cleaner':'Limpiador Industrial','Window Cleaner':'Limpiacristales',
+          'Waste Collector / Refuse Worker':'Recogedor de Residuos',
+          'Facility Maintenance Worker':'Técnico de Mantenimiento de Instalaciones',
+          'Janitorial Supervisor':'Supervisor de Limpieza',
+          'Security Guard':'Vigilante de Seguridad',
+          'Loss Prevention Officer':'Agente de Prevención de Pérdidas',
+          'CCTV Operator':'Operador de Videovigilancia',
+          'Door Supervisor / Bouncer':'Controlador de Acceso / Portero',
+          'Traffic Controller':'Controlador de Tráfico',
+          'Fire Safety Officer':'Técnico de Seguridad contra Incendios',
+          'Armored Vehicle Guard':'Escolta de Transporte de Valores',
+          'Event Security':'Seguridad en Eventos',
+          'Nursing Assistant / CNA':'Auxiliar de Enfermería',
+          'Healthcare Support Worker':'Auxiliar de Salud',
+          'Ambulance Driver / EMT':'Conductor de Ambulancia / TEM',
+          'Hospital Orderly':'Celador de Hospital',
+          'Medical Equipment Technician':'Técnico de Equipos Médicos',
+          'Sterilization Technician':'Técnico de Esterilización',
+          'Pharmacy Assistant':'Auxiliar de Farmacia',
+          'Dental Assistant':'Auxiliar de Odontología',
+          'Home Care Worker':'Cuidador/a a Domicilio',
+          'Seafarer / Sailor':'Marinero / Tripulante','Marine Mechanic':'Mecánico Naval',
+          'Ship Builder / Fabricator':'Constructor Naval',
+          'Offshore Rig Worker':'Trabajador de Plataforma Offshore','Diver':'Buzo',
+          'Deck Hand':'Marinero de Cubierta','Marine Electrician':'Electricista Naval',
+          'Port Equipment Operator':'Operador de Equipos Portuarios',
+          'Press / Print Operator':'Operario de Imprenta','Bindery Worker':'Encuadernador',
+          'Packaging Operator':'Operario de Envasado',
+          'Prepress Technician':'Técnico de Preimpresión','Screen Printer':'Serigrafista',
+          'Tailor / Seamstress':'Sastre / Costurera','Garment Worker':'Operario de Confección',
+          'Textile Machine Operator':'Operario de Maquinaria Textil',
+          'Embroidery Worker':'Bordador/a','Pattern Cutter':'Patronista',
+          'Leather Worker':'Curtidor / Talabartero',
+          'Food Production Worker':'Operario de Producción Alimentaria',
+          'Meat Processing Worker':'Operario de Cárnica',
+          'Bakery Production Worker':'Operario de Panadería Industrial',
+          'Dairy Worker':'Operario de Lácteos',
+          'Beverage Production Worker':'Operario de Bebidas',
+          'Cold Storage Worker':'Operario de Cámara Frigorífica',
+          'Quality Control Inspector (Food)':'Inspector de Calidad (Alimentación)',
+          'Underground Miner':'Minero Subterráneo','Surface Miner':'Minero a Cielo Abierto',
+          'Driller':'Perforista de Minas','Blaster / Shot Firer':'Volador / Artificiero',
+          'Ore Processing Worker':'Operario de Procesamiento de Mineral',
+          'Mine Equipment Operator':'Operador de Maquinaria Minera',
+          'Safety Inspector':'Inspector de Seguridad Minera',
+          'Tower Climber / Rigger':'Trepador de Torres / Rigger',
+          'Fibre Optic Technician':'Técnico de Fibra Óptica',
+          'Network Cable Installer':'Instalador de Cables de Red',
+          'Satellite Dish Installer':'Instalador de Antenas Parabólicas',
+          'IT Hardware Technician':'Técnico de Hardware Informático',
+        },
+        'country-labels': {
+          'Afghanistan':'Afganistán','Albania':'Albania','Algeria':'Argelia',
+          'Argentina':'Argentina','Australia':'Australia','Austria':'Austria',
+          'Bahrain':'Baréin','Bangladesh':'Bangladés','Belgium':'Bélgica',
+          'Brazil':'Brasil','Bulgaria':'Bulgaria','Canada':'Canadá',
+          'Chile':'Chile','China':'China','Colombia':'Colombia','Croatia':'Croacia',
+          'Czech Republic':'República Checa','Denmark':'Dinamarca',
+          'Egypt':'Egipto','Ethiopia':'Etiopía','Finland':'Finlandia',
+          'France':'Francia','Germany':'Alemania','Ghana':'Ghana',
+          'Greece':'Grecia','Hungary':'Hungría','India':'India',
+          'Indonesia':'Indonesia','Iran':'Irán','Iraq':'Irak','Ireland':'Irlanda',
+          'Italy':'Italia','Japan':'Japón','Jordan':'Jordania','Kazakhstan':'Kazajistán',
+          'Kenya':'Kenia','Kuwait':'Kuwait','Lebanon':'Líbano','Libya':'Libia',
+          'Malaysia':'Malasia','Mexico':'México','Morocco':'Marruecos',
+          'Netherlands':'Países Bajos','New Zealand':'Nueva Zelanda','Nigeria':'Nigeria',
+          'Norway':'Noruega','Oman':'Omán','Pakistan':'Pakistán','Palestine':'Palestina',
+          'Philippines':'Filipinas','Poland':'Polonia','Portugal':'Portugal',
+          'Qatar':'Catar','Romania':'Rumanía','Russia':'Rusia',
+          'Saudi Arabia':'Arabia Saudita','Senegal':'Senegal','Serbia':'Serbia',
+          'Singapore':'Singapur','South Africa':'Sudáfrica','South Korea':'Corea del Sur',
+          'Spain':'España','Sri Lanka':'Sri Lanka','Sudan':'Sudán','Sweden':'Suecia',
+          'Switzerland':'Suiza','Syria':'Siria','Thailand':'Tailandia',
+          'Tunisia':'Túnez','Turkey':'Turquía','UAE':'Emiratos Árabes Unidos',
+          'Uganda':'Uganda','Ukraine':'Ucrania','United Kingdom':'Reino Unido',
+          'United States':'Estados Unidos','Vietnam':'Vietnam','Yemen':'Yemen',
+        },
+        'city-labels': {
+          'Seville':'Sevilla','Vienna':'Viena','Munich':'Múnich',
+          'Rome':'Roma','Naples':'Nápoles','Florence':'Florencia','Venice':'Venecia',
+          'Genoa':'Génova','Turin':'Turín','Bologna':'Bolonia',
+          'Athens':'Atenas','Cairo':'El Cairo','Moscow':'Moscú','Warsaw':'Varsovia',
+          'Prague':'Praga','Brussels':'Bruselas','Tokyo':'Tokio','Beijing':'Pekín',
+          'Kyiv':'Kiev','Lisbon':'Lisboa','Copenhagen':'Copenhague',
+          'Bucharest':'Bucarest','Belgrade':'Belgrado',
+          'London':'Londres','Paris':'París',
+          'New York':'Nueva York','Los Angeles':'Los Ángeles',
+          'Mexico City':'Ciudad de México',
+          'Riyadh':'Riad','Jeddah':'Yeda','Mecca':'La Meca','Medina':'Medina',
+          'Damascus':'Damasco','Baghdad':'Bagdad','Tehran':'Teherán',
+          'Saint Petersburg':'San Petersburgo','Addis Ababa':'Adís Abeba',
+          'Kuwait City':'Ciudad de Kuwait','Ho Chi Minh City':'Ciudad Ho Chi Minh',
+        },
+      },
+      ar: {
+        'page-title':      'Sohnus | البيت المهني لأصحاب الحرف والمهن',
+        'nav-cta':         'انضم إلى قائمة الانتظار',
+        'hero-pill':       'لأصحاب الحرف والمهن اليدوية',
+        'hero-h1':         'أصحاب الحرف والمهن<br><em>مرئيون، مُقدَّرون،<br>متواصلون.</em>',
+        'hero-sub':        'نحن أبناء عائلات عاملة. كبرنا، شقّينا طريقنا في الحياة، وعدنا. Sohnus هو ما نبنيه لأهلنا.',
+        'hero-btn':        'انضم إلى قائمة الانتظار',
+        'hero-note':       'نقرأ كل اسم في هذه القائمة. سنصل إليك.',
+        'pain-label':      'ما الذي نعمل على تغييره',
+        'pain-intro':      'أنت محترف في ما تعمله.<br>لكن لا أحد يراك.',
+        'pain-1-h3':       'قضيت سنوات حتى أتقنت حرفتك. ولا أحد خارج مكان عملك يعرف ذلك.',
+        'pain-1-p':        'لا يوجد ملف مهني للعمال الذين يحملون خبرتهم بأيديهم. لا طريقة تُثبت بها ما أنجزته، ولا سجل يشهد لك بما تعرفه ومدة عملك. في كل مرة، تبدأ من الصفر وتثبت نفسك من جديد.',
+        'pain-2-h3':       'الوظيفة نُشرت الساعة السابعة صباحاً. حين انتهت ورديتك كانت قد ذهبت.',
+        'pain-2-p':        'فرص العمل تعيش في مجموعات واتساب وصفحات فيسبوك. تأتي وتمضي بسرعة. حين تردّ، أنت واحد من خمسين شخصاً، ولا أحد في تلك المحادثة يعرف من أنت. لا تاريخ يسبقك، ولا سمعة تدافع عنك. مجرد رسالة أخرى في محادثة مضت.',
+        'pain-3-h3':       'اتصلوا بينما كنت في ورديتك. ثم انتهى الأمر.',
+        'pain-3-p':        'أخيراً ردّوا عليك. يريدون مقابلتك الأربعاء الساعة الثانية ظهراً. لكنك في ورديتك. تشرح الوضع. يقولون سيجدون وقتاً آخر. تتابعهم. لا جواب. بحلول ذلك الوقت كانوا قد اختاروا غيرك.',
+        'stats-label':     'أرقام تحكي ما تعيشه',
+        'stat-1-desc':     'من أصحاب الحرف والمهن اليدوية يشعرون بأن عملهم لا يُقدَّر كما يستحق',
+        'stat-2-desc':     'يعتمدون على فيسبوك في البحث عن عمل، دون هوية مهنية حقيقية تمثّلهم',
+        'stat-3-desc':     'من العمال الذين يضغطون على "تقدّم الآن" لا يكملون طلبهم. هذا النظام لم يُبنَ لهم',
+        'building-label':  'ما هو Sohnus',
+        'building-head':   'ثلاثة أشياء حُرم منها العمّال دائماً. نحن <em>نبنيها جميعاً.</em>',
+        'building-sub':    'نحن لا نخبّئ شيئاً. هذه خارطة طريقنا: ما نبنيه الآن، وما يليه، وأين نريد أن نصل.',
+        'pillar-1-tag':    'المرحلة 1: الهوية والمجتمع',
+        'pillar-1-h3':     'بيت مهني يليق بك',
+        'pillar-1-p':      'ملف مهني يحكي قصتك: مهاراتك، خبرتك، وإثبات موثوق لما أنجزته. ومنصة تتواصل فيها مع أصحاب مهنتك، تشارك ما تعرفه، وتتعلم ممن سبقوك في هذا الطريق.',
+        'pillar-2-tag':    'المرحلة 2: الوكيل الذكي',
+        'pillar-2-h3':     'ذكاء اصطناعي يعمل نيابةً عنك حين تكون في ورديتك',
+        'pillar-2-p':      'أثناء ورديتك، يتولى وكيلك الذكي ما كنت ستفوّته: يردّ على أسئلة أصحاب العمل، ينسّق المواعيد، ويتحدث باسمك. لا فرصة تضيع بعد اليوم لأنك كنت منشغلاً بعملك.',
+        'pillar-3-tag':    'المرحلة 3: الوظائف والتوافق',
+        'pillar-3-h3':     'وظائف تناسب مهاراتك الحقيقية، لا ورقتك',
+        'pillar-3-p':      'نربط الفرص بأصحابها الحقيقيين بناءً على المهارة والخبرة، لا على شكل السيرة الذاتية. تتقدم بملفك على Sohnus، ويستخدم صاحب العمل وكيلك الذكي ليفهم من أنت قبل أن يلتقيك.',
+        'founders-label':  'من نحن',
+        'founders-quote':  'صنعه أبناؤكم،<br>لأجل <em>مستقبلكم.</em>',
+        'founders-body':   'كبرنا ونحن نرى آباءنا يذهبون إلى العمل كل يوم. مهرة، خبراء، يُعتمد عليهم. ورأينا العالم لا يرى ذلك. لا منصة تعرف اسمهم، ولا نظام يحمل سمعتهم معه.<br><br><strong>نحن أبناء عائلات عاملة.</strong> ذهبنا إلى الجامعة وبنينا مساراتنا، وعدنا إلى البيت كل أسبوع. تعلّمنا الكثير، لكننا لم ننسَ أبداً من أين جئنا.<br><br>Sohnus هو ما نُعيده لهم. لا كغرباء يدرسون مشكلة، بل كأبناء عاشوا فيها.',
+        'waitlist-eyebrow':'وصول مبكر: انضم إلى قائمة الانتظار',
+        'waitlist-h2':     'هل أنت مستعد لأن يُعرَف قدرك؟',
+        'waitlist-sub':    'نحن نبني Sohnus لعمّال مثلك، ونريدك معنا من اليوم الأول. انضم إلى قائمة الانتظار وكن من أوائل من يحملون هوية مهنية تليق بهم.',
+        'ph-first':        'الاسم الأول',
+        'ph-last':         'اسم العائلة',
+        'ph-email':        'البريد الإلكتروني',
+        'ph-phone-code':   'رمز الدولة',
+        'ph-phone':        'رقم الهاتف',
+        'ph-sector':       'القطاع',
+        'ph-sector-other': 'يرجى تحديد قطاعك',
+        'ph-trade-disabled':'اختر القطاع أولاً',
+        'ph-trade':        'اختر مهنتك',
+        'ph-trade-other':  'يرجى تحديد مهنتك',
+        'ph-country':      'الدولة',
+        'ph-city-disabled':'اختر الدولة أولاً',
+        'ph-city':         'اختر المدينة',
+        'form-consent':    'أوافق على <a href="privacy.html" target="_blank">سياسة الخصوصية</a> وأمنح Sohnus موافقتي للتواصل معي بشأن الوصول المبكر.',
+        'submit-btn':      'انضم إلى قائمة الانتظار',
+        'form-note':       'لن نزعجك. رسالة واحدة فقط حين نكون جاهزين.',
+        'success-h3':      'أنت في القائمة.',
+        'success-p':       'سنتواصل معك حين يكون Sohnus جاهزاً.<br>شكراً لأنك معنا من البداية.',
+        'footer-copy':     '© 2025 Sohnus. جميع الحقوق محفوظة.',
+        'footer-privacy':  'سياسة الخصوصية',
+        'footer-terms':    'شروط الخدمة',
+        'joining':         'جارٍ الإرسال…',
+        'err-first':       'يرجى إدخال اسمك الأول',
+        'err-last':        'يرجى إدخال اسم العائلة',
+        'err-email':       'يرجى إدخال عنوان بريد إلكتروني صحيح',
+        'err-phone-code':  'يرجى اختيار رمز الدولة',
+        'err-phone':       'يرجى إدخال رقم هاتفك',
+        'err-phone-invalid':'يرجى إدخال رقم هاتف صحيح (أرقام فقط، 6–15 خانة)',
+        'err-sector':      'يرجى اختيار قطاعك',
+        'err-sector-other':'يرجى تحديد قطاعك',
+        'err-trade-other': 'يرجى تحديد مهنتك',
+        'err-trade':       'يرجى اختيار مهنتك',
+        'err-country':     'يرجى اختيار دولتك',
+        'err-city':        'يرجى اختيار مدينتك',
+        'err-consent':     'يرجى الموافقة على سياسة الخصوصية للمتابعة',
+        'err-generic':     'حدث خطأ ما. يرجى المحاولة مرة أخرى.',
+        'opt-other':       'أخرى',
+        'sector-labels':   {
+          'Construction & Real Estate': 'البناء والعقارات',
+          'Electrical':                 'الكهرباء',
+          'Plumbing & HVAC':            'السباكة والتكييف',
+          'Hospitality & Food Service': 'الضيافة والمطاعم',
+          'Automotive & Mechanical':    'السيارات والميكانيكا',
+          'Transport & Logistics':      'النقل والخدمات اللوجستية',
+          'Manufacturing & Industrial': 'التصنيع والصناعة',
+          'Oil, Gas & Energy':          'النفط والغاز والطاقة',
+          'Agriculture & Farming':      'الزراعة',
+          'Landscaping & Outdoor':      'تنسيق الحدائق',
+          'Cleaning & Facilities':      'النظافة وإدارة المرافق',
+          'Security & Safety':          'الأمن والسلامة',
+          'Healthcare Support':         'دعم الرعاية الصحية',
+          'Marine & Offshore':          'البحرية والأعمال البحرية',
+          'Printing & Packaging':       'الطباعة والتغليف',
+          'Textiles & Garments':        'النسيج والملابس',
+          'Food Processing':            'تصنيع الأغذية',
+          'Mining & Quarrying':         'التعدين والمحاجر',
+          'Telecommunications':         'الاتصالات',
+          'Other':                      'أخرى',
+        },
+        'trade-labels': {
+          'Carpenter':'نجار','Bricklayer / Mason':'بنّاء / رصّاص',
+          'Plasterer':'مجصّص / مبيّض','Tiler':'مبلّط',
+          'Painter & Decorator':'دهّان وديكور','Roofer':'عامل تسقيف',
+          'Scaffolder':'عامل سقالات','Glazier':'زجّاج',
+          'Flooring Installer':'مركّب أرضيات','Steel Fixer':'حدّاد تسليح',
+          'Formwork Carpenter':'نجار شدّات','Concrete Finisher':'معالج خرسانة',
+          'Site Laborer':'عامل موقع','Demolition Worker':'عامل هدم',
+          'Waterproofing Specialist':'متخصص عزل مائي',
+          'Insulation Installer':'مركّب عوازل',
+          'Drywall / Partition Installer':'مركّب جدران جبسية',
+          'Quantity Surveyor':'مهندس كميات','Site Foreman':'مراقب موقع',
+          'Electrician':'كهربائي','Electrical Technician':'فني كهرباء',
+          'Cable Installer':'مركّب كابلات','Panel Wireman':'فني لوحات كهربائية',
+          'Solar Panel Installer':'مركّب ألواح شمسية',
+          'Elevator / Lift Technician':'فني مصاعد',
+          'Lighting Technician':'فني إضاءة',
+          'Instrumentation Technician':'فني أجهزة قياس',
+          'Fire Alarm Technician':'فني إنذار حريق',
+          'CCTV Technician':'فني كاميرات مراقبة',
+          'Low Voltage Technician':'فني تيار خفيف',
+          'Generator Technician':'فني مولدات',
+          'Plumber':'سبّاك','Pipefitter':'مركّب أنابيب',
+          'HVAC Technician':'فني تكييف وتهوية',
+          'Refrigeration Mechanic':'ميكانيكي تبريد',
+          'Boiler Technician':'فني مراجل بخارية','Gas Fitter':'فني غاز',
+          'Fire Sprinkler Installer':'مركّب رشاشات حريق',
+          'Water Treatment Technician':'فني معالجة مياه',
+          'Sanitation Technician':'فني صرف صحي',
+          'Chef':'طاهٍ / شيف','Sous Chef':'شيف ثانٍ',
+          'Line Cook':'طاهٍ في المحطة','Pastry Chef':'كوندتور / طاهٍ حلويات',
+          'Baker':'خبّاز','Butcher':'جزّار','Barista':'باريستا',
+          'Bartender':'نادل بار','Waiter / Waitress':'نادل / نادلة',
+          'Room Attendant / Housekeeper':'عامل نظافة غرف',
+          'Dishwasher / Steward':'غسيل أطباق / ستيوارد',
+          'Hotel Porter / Bellboy':'حمّال فندق / بوي',
+          'Laundry Attendant':'عامل مغسلة','Kitchen Helper':'مساعد مطبخ',
+          'Catering Assistant':'مساعد تقديم طعام','Restaurant Manager':'مدير مطعم',
+          'Auto Mechanic / Technician':'ميكانيكي سيارات',
+          'Auto Body Repair Technician':'فني هياكل سيارات',
+          'Tire Technician':'فني إطارات','Spray Painter':'دهّان سيارات',
+          'Diagnostic Technician':'فني تشخيص أعطال',
+          'Heavy Equipment Mechanic':'ميكانيكي معدات ثقيلة',
+          'Motorcycle Mechanic':'ميكانيكي دراجات نارية',
+          'Truck Mechanic':'ميكانيكي شاحنات',
+          'Transmission Specialist':'متخصص ناقل الحركة',
+          'Auto Electrician':'كهربائي سيارات',
+          'Car Detailer':'عامل تنظيف وتلميع سيارات',
+          'Truck Driver':'سائق شاحنة','Bus Driver':'سائق حافلة',
+          'Taxi / Rideshare Driver':'سائق تاكسي / سيارة أجرة',
+          'Delivery Driver':'سائق توصيل','Forklift Operator':'مشغّل رافعة شوكية',
+          'Crane Operator':'مشغّل رافعة','Warehouse Operative':'عامل مستودع',
+          'Freight Handler':'عامل شحن','Port / Dock Worker':'عامل ميناء',
+          'Train Driver':'سائق قطار',
+          'Machine Operator':'مشغّل آلات',
+          'CNC Operator / Machinist':'مشغّل CNC','Welder':'لحّام',
+          'Metal Fabricator':'حدّاد صناعي','Quality Control Inspector':'مفتش جودة',
+          'Assembly Line Worker':'عامل خط تجميع',
+          'Packaging Worker':'عامل تعبئة وتغليف','Press Operator':'مشغّل مكبس',
+          'Injection Moulding Operator':'مشغّل حقن بلاستيك',
+          'Tool & Die Maker':'صانع قوالب',
+          'Industrial Maintenance Technician':'فني صيانة صناعية',
+          'Rig Worker / Roughneck':'عامل حفر / رافعة بترول',
+          'Driller':'مشغّل حفّار','Pipeline Welder':'لحّام أنابيب',
+          'Process Operator':'مشغّل عمليات',
+          'Instrumentation & Control Technician':'فني أجهزة وتحكم',
+          'HSE / Safety Officer':'مسؤول الصحة والسلامة والبيئة',
+          'Maintenance Technician':'فني صيانة','Tank Farm Operator':'مشغّل خزانات',
+          'Subsea Technician':'فني أعمال بحرية تحت الماء',
+          'Wind Turbine Technician':'فني توربينات الرياح',
+          'Solar Energy Technician':'فني طاقة شمسية',
+          'Farm Worker':'عامل زراعي','Greenhouse Worker':'عامل بيوت بلاستيكية',
+          'Irrigation Technician':'فني ري','Livestock Worker':'عامل ماشية',
+          'Poultry Worker':'عامل دواجن',
+          'Fisherman / Aquaculture Worker':'صيّاد / عامل استزراع سمكي',
+          'Tractor / Farm Equipment Operator':'سائق جرار / مشغّل آلات زراعية',
+          'Pest Control Technician':'فني مكافحة آفات',
+          'Agricultural Sprayer':'عامل رش مبيدات',
+          'Landscaper / Groundskeeper':'منسّق حدائق','Gardener':'بستاني',
+          'Tree Surgeon / Arborist':'متخصص تشجير وتقليم',
+          'Irrigation Installer':'مركّب أنظمة ري',
+          'Swimming Pool Technician':'فني مسابح',
+          'Sports Turf Technician':'فني ملاعب عشبية',
+          'Hardscaping Worker':'عامل تبليط وتنسيق خارجي',
+          'Commercial Cleaner':'عامل نظافة تجاري',
+          'Domestic / House Cleaner':'عامل نظافة منازل',
+          'Industrial Cleaner':'عامل نظافة صناعية',
+          'Window Cleaner':'عامل تنظيف زجاج',
+          'Waste Collector / Refuse Worker':'عامل جمع القمامة',
+          'Facility Maintenance Worker':'عامل صيانة مرافق',
+          'Janitorial Supervisor':'مشرف نظافة',
+          'Security Guard':'حارس أمن',
+          'Loss Prevention Officer':'ضابط منع السرقة',
+          'CCTV Operator':'مشغّل كاميرات المراقبة',
+          'Door Supervisor / Bouncer':'حارس مدخل / بوّاب',
+          'Traffic Controller':'منظّم مرور',
+          'Fire Safety Officer':'مسؤول السلامة من الحريق',
+          'Armored Vehicle Guard':'حارس سيارة مصفحة',
+          'Event Security':'حارس أمن الفعاليات',
+          'Nursing Assistant / CNA':'مساعد تمريض',
+          'Healthcare Support Worker':'عامل دعم صحي',
+          'Ambulance Driver / EMT':'سائق إسعاف / مسعف',
+          'Hospital Orderly':'عامل نظافة مستشفى',
+          'Medical Equipment Technician':'فني أجهزة طبية',
+          'Sterilization Technician':'فني تعقيم',
+          'Pharmacy Assistant':'مساعد صيدلية',
+          'Dental Assistant':'مساعد طب أسنان',
+          'Home Care Worker':'مقدّم رعاية منزلية',
+          'Seafarer / Sailor':'بحّار / ملاح','Marine Mechanic':'ميكانيكي بحري',
+          'Ship Builder / Fabricator':'بنّاء سفن',
+          'Offshore Rig Worker':'عامل منصة بحرية','Diver':'غوّاص',
+          'Deck Hand':'بحّار سطح','Marine Electrician':'كهربائي بحري',
+          'Port Equipment Operator':'مشغّل معدات ميناء',
+          'Press / Print Operator':'مشغّل مطبعة','Bindery Worker':'عامل تجليد',
+          'Packaging Operator':'مشغّل تغليف',
+          'Prepress Technician':'فني ما قبل الطباعة',
+          'Screen Printer':'طابع على القماش',
+          'Tailor / Seamstress':'خيّاط / خيّاطة','Garment Worker':'عامل ملابس',
+          'Textile Machine Operator':'مشغّل آلات نسيج',
+          'Embroidery Worker':'طرّاز / طرّازة',
+          'Pattern Cutter':'قاطع قالب خياطة','Leather Worker':'عامل جلود',
+          'Food Production Worker':'عامل إنتاج غذائي',
+          'Meat Processing Worker':'عامل تصنيع لحوم',
+          'Bakery Production Worker':'عامل إنتاج مخبوزات',
+          'Dairy Worker':'عامل منتجات ألبان',
+          'Beverage Production Worker':'عامل إنتاج مشروبات',
+          'Cold Storage Worker':'عامل تخزين بارد',
+          'Quality Control Inspector (Food)':'مفتش جودة (غذاء)',
+          'Underground Miner':'عامل تعدين تحت الأرض',
+          'Surface Miner':'عامل تعدين سطحي',
+          'Blaster / Shot Firer':'متخصص تفجير',
+          'Ore Processing Worker':'عامل معالجة خامات',
+          'Mine Equipment Operator':'مشغّل معدات التعدين',
+          'Safety Inspector':'مفتش سلامة',
+          'Tower Climber / Rigger':'متسلق أبراج / ريغر',
+          'Fibre Optic Technician':'فني ألياف ضوئية',
+          'Network Cable Installer':'مركّب كابلات شبكات',
+          'Satellite Dish Installer':'مركّب أطباق فضائية',
+          'IT Hardware Technician':'فني أجهزة تقنية المعلومات',
+        },
+        'country-labels': {
+          'Afghanistan':'أفغانستان','Albania':'ألبانيا','Algeria':'الجزائر',
+          'Argentina':'الأرجنتين','Australia':'أستراليا','Austria':'النمسا',
+          'Bahrain':'البحرين','Bangladesh':'بنغلاديش','Belgium':'بلجيكا',
+          'Brazil':'البرازيل','Bulgaria':'بلغاريا','Canada':'كندا',
+          'Chile':'تشيلي','China':'الصين','Colombia':'كولومبيا','Croatia':'كرواتيا',
+          'Czech Republic':'جمهورية التشيك','Denmark':'الدنمارك',
+          'Egypt':'مصر','Ethiopia':'إثيوبيا','Finland':'فنلندا',
+          'France':'فرنسا','Germany':'ألمانيا','Ghana':'غانا',
+          'Greece':'اليونان','Hungary':'المجر','India':'الهند',
+          'Indonesia':'إندونيسيا','Iran':'إيران','Iraq':'العراق','Ireland':'أيرلندا',
+          'Italy':'إيطاليا','Japan':'اليابان','Jordan':'الأردن','Kazakhstan':'كازاخستان',
+          'Kenya':'كينيا','Kuwait':'الكويت','Lebanon':'لبنان','Libya':'ليبيا',
+          'Malaysia':'ماليزيا','Mexico':'المكسيك','Morocco':'المغرب',
+          'Netherlands':'هولندا','New Zealand':'نيوزيلندا','Nigeria':'نيجيريا',
+          'Norway':'النرويج','Oman':'عُمان','Pakistan':'باكستان','Palestine':'فلسطين',
+          'Philippines':'الفلبين','Poland':'بولندا','Portugal':'البرتغال',
+          'Qatar':'قطر','Romania':'رومانيا','Russia':'روسيا',
+          'Saudi Arabia':'المملكة العربية السعودية','Senegal':'السنغال','Serbia':'صربيا',
+          'Singapore':'سنغافورة','South Africa':'جنوب أفريقيا','South Korea':'كوريا الجنوبية',
+          'Spain':'إسبانيا','Sri Lanka':'سريلانكا','Sudan':'السودان','Sweden':'السويد',
+          'Switzerland':'سويسرا','Syria':'سوريا','Thailand':'تايلاند',
+          'Tunisia':'تونس','Turkey':'تركيا','UAE':'الإمارات العربية المتحدة',
+          'Uganda':'أوغندا','Ukraine':'أوكرانيا','United Kingdom':'المملكة المتحدة',
+          'United States':'الولايات المتحدة','Vietnam':'فيتنام','Yemen':'اليمن',
+        },
+        'city-labels': {
+          'Kabul':'كابل','Kandahar':'قندهار','Herat':'هرات','Mazar-i-Sharif':'مزار الشريف','Jalalabad':'جلال آباد',
+          'Tirana':'تيرانا','Durrës':'دوريس','Vlorë':'فلورا','Elbasan':'إلباسان','Shkodër':'شكودر',
+          'Algiers':'الجزائر','Oran':'وهران','Constantine':'قسنطينة','Annaba':'عنابة','Blida':'البليدة','Batna':'باتنة','Sétif':'سطيف','Tlemcen':'تلمسان',
+          'Buenos Aires':'بوينس آيرس','Córdoba':'قرطبة','Rosario':'روساريو','Mendoza':'ميندوزا','La Plata':'لا بلاتا','Tucumán':'توكومان','Mar del Plata':'مار ديل بلاتا','Salta':'سالتا',
+          'Sydney':'سيدني','Melbourne':'ملبورن','Brisbane':'بريسبان','Perth':'بيرث','Adelaide':'أديلايد','Gold Coast':'غولد كوست','Canberra':'كانبيرا','Darwin':'داروين','Hobart':'هوبارت',
+          'Vienna':'فيينا','Graz':'غراتس','Linz':'لينز','Salzburg':'سالزبورغ','Innsbruck':'إنسبروك','Klagenfurt':'كلاغنفورت',
+          'Manama':'المنامة','Riffa':'الرفاع','Muharraq':'المحرق','Hamad Town':'مدينة حمد','Isa Town':'مدينة عيسى',
+          'Dhaka':'دكا','Chittagong':'شيتاغونغ','Khulna':'خولنا','Rajshahi':'راجشاهي','Sylhet':'سيلهيت','Mymensingh':'ميمنسينغ','Comilla':'كوميلا',
+          'Brussels':'بروكسل','Antwerp':'أنتويرب','Ghent':'خنت','Bruges':'بروج','Liège':'لييج','Namur':'نامور','Leuven':'لوفان',
+          'São Paulo':'ساو باولو','Rio de Janeiro':'ريو دي جانيرو','Brasília':'برازيليا','Salvador':'سالفادور','Fortaleza':'فورتاليزا','Belo Horizonte':'بيلو هوريزونتي','Manaus':'ماناوس','Curitiba':'كوريتيبا','Recife':'ريسيفي','Porto Alegre':'بورتو أليغري',
+          'Sofia':'صوفيا','Plovdiv':'بلوفديف','Varna':'فارنا','Burgas':'بورغاس','Ruse':'روسي','Stara Zagora':'ستارا زاغورا',
+          'Toronto':'تورنتو','Montreal':'مونتريال','Vancouver':'فانكوفر','Calgary':'كالغاري','Edmonton':'إدمونتون','Ottawa':'أوتاوا','Winnipeg':'وينيبيغ','Quebec City':'مدينة كيبيك','Hamilton':'هاميلتون',
+          'Santiago':'سانتياغو','Valparaíso':'فالبارايسو','Concepción':'كونسبسيون','La Serena':'لا سيرينا','Antofagasta':'أنتوفاغاستا','Temuco':'تيموكو',
+          'Shanghai':'شنغهاي','Beijing':'بكين','Guangzhou':'غوانغتشو','Shenzhen':'شنتشن','Chengdu':'تشنغدو','Wuhan':'ووهان','Tianjin':'تيانجين','Chongqing':'تشونغتشينغ',"Xi'an":'شيآن','Hangzhou':'هانغتشو','Nanjing':'نانجينغ',
+          'Bogotá':'بوغوتا','Medellín':'ميدلين','Cali':'كالي','Barranquilla':'بارانكييا','Cartagena':'قرطاجنة','Cúcuta':'كوكوتا','Bucaramanga':'بوكارامانغا',
+          'Zagreb':'زغرب','Split':'سبليت','Rijeka':'ريكا','Osijek':'أوسيك','Zadar':'زادار','Dubrovnik':'دوبروفنيك',
+          'Prague':'براغ','Brno':'برنو','Ostrava':'أوسترافا','Plzeň':'بلزن','Liberec':'ليبيريتس','Olomouc':'أولوموتس',
+          'Copenhagen':'كوبنهاغن','Aarhus':'آرهوس','Odense':'أودنسي','Aalborg':'ألبورغ','Esbjerg':'إسبيرغ',
+          'Cairo':'القاهرة','Alexandria':'الإسكندرية','Giza':'الجيزة','Port Said':'بورسعيد','Suez':'السويس','Luxor':'الأقصر','Mansoura':'المنصورة','Tanta':'طنطا','Assiut':'أسيوط','Ismailia':'الإسماعيلية','Fayyum':'الفيوم','Zagazig':'الزقازيق','Hurghada':'الغردقة','Aswan':'أسوان','Sharm El-Sheikh':'شرم الشيخ',
+          'Addis Ababa':'أديس أبابا','Dire Dawa':'دير داوا','Mekelle':'مكلي','Gondar':'غوندار','Bahir Dar':'بحر دار','Hawassa':'هاواسا',
+          'Helsinki':'هلسنكي','Espoo':'إسبو','Tampere':'تامبيري','Vantaa':'فانتا','Oulu':'أولو','Turku':'توركو',
+          'Paris':'باريس','Marseille':'مرسيليا','Lyon':'ليون','Toulouse':'تولوز','Nice':'نيس','Nantes':'نانت','Strasbourg':'ستراسبورغ','Montpellier':'مونبلييه','Bordeaux':'بوردو','Lille':'ليل',
+          'Berlin':'برلين','Hamburg':'هامبورغ','Munich':'ميونيخ','Cologne':'كولونيا','Frankfurt':'فرانكفورت','Stuttgart':'شتوتغارت','Düsseldorf':'دوسلدورف','Leipzig':'لايبزيغ','Dortmund':'دورتموند','Essen':'إيسن','Bremen':'بريمن','Dresden':'دريسدن','Hanover':'هانوفر','Nuremberg':'نورنبرغ',
+          'Accra':'أكرا','Kumasi':'كوماسي','Tamale':'تمالي','Sekondi-Takoradi':'سيكوندي-تاكورادي','Cape Coast':'كيب كوست',
+          'Athens':'أثينا','Thessaloniki':'سالونيك','Patras':'باتراس','Heraklion':'هيراكليون','Larissa':'لاريسا','Volos':'فولوس','Rhodes':'رودس',
+          'Budapest':'بودابست','Debrecen':'ديبريتسن','Miskolc':'مشكولتس','Szeged':'سيغيد','Pécs':'بيتش','Győr':'غيور',
+          'Mumbai':'مومباي','Delhi':'دلهي','Bangalore':'بنغالور','Hyderabad':'حيدراباد','Ahmedabad':'أحمد آباد','Chennai':'تشيناي','Kolkata':'كلكتا','Surat':'سورات','Pune':'بونا','Jaipur':'جايبور','Lucknow':'لكناو','Kanpur':'كانبور','Nagpur':'ناغبور','Bhopal':'بوبال',
+          'Jakarta':'جاكرتا','Surabaya':'سورابايا','Bandung':'باندونغ','Medan':'ميدان','Semarang':'سيمارانغ','Makassar':'ماكاسار','Palembang':'بالمبانغ','Tangerang':'تانغيرانغ','Depok':'ديبوك',
+          'Tehran':'طهران','Mashhad':'مشهد','Isfahan':'أصفهان','Karaj':'كرج','Tabriz':'تبريز','Shiraz':'شيراز','Ahvaz':'الأهواز','Qom':'قم',
+          'Baghdad':'بغداد','Basra':'البصرة','Mosul':'الموصل','Erbil':'أربيل','Kirkuk':'كركوك','Najaf':'النجف','Karbala':'كربلاء',
+          'Dublin':'دبلن','Cork':'كورك','Limerick':'ليمريك','Galway':'غالواي','Waterford':'ووتفورد','Drogheda':'دروغيدا',
+          'Rome':'روما','Milan':'ميلانو','Naples':'نابولي','Turin':'تورينو','Palermo':'باليرمو','Genoa':'جنوا','Bologna':'بولونيا','Florence':'فلورنسا','Bari':'باري','Venice':'البندقية',
+          'Tokyo':'طوكيو','Yokohama':'يوكوهاما','Osaka':'أوساكا','Nagoya':'ناغويا','Sapporo':'سابورو','Fukuoka':'فوكوكا','Kobe':'كوبي','Kyoto':'كيوتو','Kawasaki':'كاواساكي','Hiroshima':'هيروشيما',
+          'Amman':'عمّان','Zarqa':'الزرقاء','Irbid':'إربد','Aqaba':'العقبة','Russeifa':'رصيفة','Madaba':'مادبا',
+          'Almaty':'ألماتي','Astana':'أستانة','Shymkent':'شيمكنت','Karaganda':'كاراغاندي','Aktobe':'أكتوبي','Taraz':'تاراز',
+          'Nairobi':'نيروبي','Mombasa':'مومباسا','Kisumu':'كيسومو','Nakuru':'ناكورو','Eldoret':'إلدوريت','Thika':'ثيكا',
+          'Kuwait City':'مدينة الكويت','Salmiya':'السالمية','Hawalli':'حولي','Farwaniya':'الفروانية','Jahra':'الجهراء',
+          'Beirut':'بيروت','Tripoli':'طرابلس','Sidon':'صيدا','Tyre':'صور','Jounieh':'جونيه','Zahle':'زحلة',
+          'Benghazi':'بنغازي','Misrata':'مصراتة','Tarhuna':'ترهونة','Zawiya':'الزاوية','Derna':'درنة',
+          'Kuala Lumpur':'كوالالمبور','George Town':'جورج تاون','Johor Bahru':'جوهور بهرو','Ipoh':'إيبوه','Shah Alam':'شاه علم','Petaling Jaya':'بيتالينغ جايا','Kota Kinabalu':'كوتا كينابالو',
+          'Mexico City':'مدينة المكسيك','Guadalajara':'غوادالاخارا','Monterrey':'مونتيري','Puebla':'بويبلا','Tijuana':'تيخوانا','León':'ليون','Mérida':'ميريدا',
+          'Casablanca':'الدار البيضاء','Rabat':'الرباط','Fez':'فاس','Marrakech':'مراكش','Agadir':'أغادير','Tangier':'طنجة','Meknès':'مكناس','Oujda':'وجدة',
+          'Amsterdam':'أمستردام','Rotterdam':'روتردام','The Hague':'لاهاي','Utrecht':'أوتريخت','Eindhoven':'إيندهوفن','Tilburg':'تيلبورغ','Groningen':'خرونينخن',
+          'Auckland':'أوكلاند','Wellington':'ولينغتون','Christchurch':'كرايستشيرش','Tauranga':'تاورانغا','Dunedin':'دونيدن',
+          'Lagos':'لاغوس','Kano':'كانو','Ibadan':'إبادان','Abuja':'أبوجا','Port Harcourt':'بورت هاركورت','Benin City':'مدينة بنين','Enugu':'إينوغو','Kaduna':'كدونا',
+          'Oslo':'أوسلو','Bergen':'بيرغن','Trondheim':'تروندهايم','Stavanger':'ستافانغر','Drammen':'دراممن','Fredrikstad':'فريدريكستاد',
+          'Muscat':'مسقط','Salalah':'صلالة','Sohar':'صحار','Nizwa':'نزوى','Sur':'صور','Rustaq':'الرستاق',
+          'Karachi':'كراتشي','Lahore':'لاهور','Faisalabad':'فيصل آباد','Rawalpindi':'راولبندي','Islamabad':'إسلام آباد','Peshawar':'بيشاور','Multan':'ملتان','Quetta':'كويتا',
+          'Gaza':'غزة','Ramallah':'رام الله','Hebron':'الخليل','Nablus':'نابلس','Jenin':'جنين','Bethlehem':'بيت لحم',
+          'Manila':'مانيلا','Quezon City':'مدينة كيزون','Cebu City':'مدينة سيبو','Davao':'داباو','Caloocan':'كالووكان','Zamboanga':'زامبوانغا','Taguig':'تاغويغ',
+          'Warsaw':'وارسو','Kraków':'كراكوف','Łódź':'لودز','Wrocław':'فروتسواف','Poznań':'بوزنان','Gdańsk':'غدانسك','Lublin':'لوبلين',
+          'Lisbon':'لشبونة','Porto':'بورتو','Braga':'براغا','Coimbra':'كويمبرا','Setúbal':'سيتوبال','Funchal':'فونشال',
+          'Doha':'الدوحة','Al Rayyan':'الريان','Al Wakrah':'الوكرة','Al Khor':'الخور','Umm Salal':'أم صلال',
+          'Bucharest':'بوخارست','Cluj-Napoca':'كلوج نابوكا','Timișoara':'تيميشوارا','Iași':'ياش','Constanța':'كونستانتا','Brașov':'براشوف',
+          'Moscow':'موسكو','Saint Petersburg':'سانت بطرسبرغ','Novosibirsk':'نوفوسيبيرسك','Yekaterinburg':'يكاترينبورغ','Kazan':'قازان','Chelyabinsk':'تشيليابينسك','Omsk':'أومسك',
+          'Riyadh':'الرياض','Jeddah':'جدة','Mecca':'مكة المكرمة','Medina':'المدينة المنورة','Dammam':'الدمام','Khobar':'الخبر','Tabuk':'تبوك','Abha':'أبها',
+          'Dakar':'داكار','Thiès':'ثيس','Saint-Louis':'سان لويس','Touba':'طوبا','Kaolack':'كاولاك',
+          'Belgrade':'بلغراد','Novi Sad':'نوفي ساد','Niš':'نيش','Kragujevac':'كراغويفاتس','Subotica':'سوبوتيتسا',
+          'Singapore':'سنغافورة',
+          'Johannesburg':'جوهانسبرغ','Cape Town':'كيب تاون','Durban':'دوربان','Pretoria':'بريتوريا','Port Elizabeth':'بورت إليزابيث','Bloemfontein':'بلومفونتين',
+          'Seoul':'سيول','Busan':'بوسان','Incheon':'إنتشون','Daegu':'دايغو','Daejeon':'دايجون','Gwangju':'غوانغجو','Ulsan':'أولسان','Suwon':'سوون',
+          'Madrid':'مدريد','Barcelona':'برشلونة','Valencia':'فالنسيا','Seville':'إشبيلية','Zaragoza':'سرقسطة','Málaga':'مالقة','Murcia':'مورسيا','Bilbao':'بلباو',
+          'Colombo':'كولومبو','Kandy':'كاندي','Galle':'غال','Jaffna':'جافنا','Negombo':'نيغومبو',
+          'Khartoum':'الخرطوم','Omdurman':'أم درمان','Port Sudan':'بورسودان','Kassala':'كسلا','Wad Madani':'ود مدني',
+          'Stockholm':'ستوكهولم','Gothenburg':'غوتنبرغ','Malmö':'مالمو','Uppsala':'أوبسالا','Västerås':'فيستراس','Örebro':'أوريبرو',
+          'Zurich':'زيورخ','Geneva':'جنيف','Basel':'بازل','Lausanne':'لوزان','Bern':'برن','Winterthur':'وينترتور',
+          'Damascus':'دمشق','Aleppo':'حلب','Homs':'حمص','Latakia':'اللاذقية','Hama':'حماة','Deir ez-Zor':'دير الزور',
+          'Bangkok':'بانكوك','Chiang Mai':'شيانغ ماي','Pattaya':'باتايا','Hat Yai':'هاد ياي','Nakhon Ratchasima':'نخون راتشاسيما','Phuket':'فوكيت',
+          'Tunis':'تونس','Sfax':'صفاقس','Sousse':'سوسة','Kairouan':'القيروان','Bizerte':'بنزرت','Monastir':'المنستير',
+          'Istanbul':'إسطنبول','Ankara':'أنقرة','Izmir':'إزمير','Bursa':'بورصة','Adana':'أضنة','Gaziantep':'غازي عنتاب','Konya':'قونية','Antalya':'أنطاليا','Mersin':'مرسين',
+          'Dubai':'دبي','Abu Dhabi':'أبوظبي','Sharjah':'الشارقة','Ajman':'عجمان','Ras Al Khaimah':'رأس الخيمة','Fujairah':'الفجيرة',
+          'Kampala':'كمبالا','Gulu':'غولو','Lira':'ليرا','Mbarara':'مباراره','Jinja':'جينجا','Mbale':'مبالي',
+          'Kyiv':'كييف','Kharkiv':'خاركيف','Odessa':'أوديسا','Dnipro':'دنيبرو','Lviv':'لفيف','Zaporizhzhia':'زاباروجيا',
+          'London':'لندن','Birmingham':'برمنغهام','Manchester':'مانشستر','Glasgow':'غلاسكو','Liverpool':'ليفربول','Leeds':'ليدز','Sheffield':'شيفيلد','Edinburgh':'إدنبرة','Bristol':'بريستول','Cardiff':'كارديف',
+          'New York':'نيويورك','Los Angeles':'لوس أنجلوس','Chicago':'شيكاغو','Houston':'هيوستن','Phoenix':'فينيكس','Philadelphia':'فيلادلفيا','San Antonio':'سان أنطونيو','San Diego':'سان دييغو','Dallas':'دالاس','San Jose':'سان خوسيه','Austin':'أوستن','Seattle':'سياتل','Denver':'دنفر','Boston':'بوسطن','Atlanta':'أتلانتا','Miami':'ميامي',
+          'Ho Chi Minh City':'مدينة هو تشي منه','Hanoi':'هانوي','Da Nang':'دا نانغ','Hai Phong':'هاي فونغ','Can Tho':'كان ثو','Hue':'هيو',
+          'Sanaa':'صنعاء','Aden':'عدن','Taiz':'تعز','Hudaydah':'الحديدة','Mukalla':'المكلا',
+        },
+      }
+    }
+
+    /* ── i18n helpers ── */
+    window._currentLang = 'en'
+
+    function t(key) {
+      return (TRANSLATIONS[window._currentLang] || TRANSLATIONS.en)[key] || key
+    }
+
+    function setLang(code) {
+      if (!TRANSLATIONS[code]) return
+      window._currentLang = code
+      const T = TRANSLATIONS[code]
+      const isRTL = code === 'ar'
+
+      document.documentElement.lang = code
+      document.documentElement.dir  = isRTL ? 'rtl' : 'ltr'
+      document.title = T['page-title'] || document.title
+
+      // Update all data-i18n elements (using innerHTML to support embedded tags)
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n')
+        if (T[key] !== undefined) el.innerHTML = T[key]
+      })
+
+      // Update placeholders
+      document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+        const key = el.getAttribute('data-i18n-ph')
+        if (T[key] !== undefined) el.placeholder = T[key]
+      })
+
+      // Update select placeholder options
+      const sectorFirst = document.querySelector('#wl-sector option[value=""]')
+      if (sectorFirst) sectorFirst.textContent = T['ph-sector'] || 'Sector'
+
+      const tradeSel = document.getElementById('wl-trade')
+      if (tradeSel && tradeSel.disabled) {
+        tradeSel.innerHTML = '<option value="" disabled selected>' + (T['ph-trade-disabled'] || 'Select sector first') + '</option>'
+      }
+
+      const citySel = document.getElementById('wl-city')
+      if (citySel && citySel.disabled) {
+        citySel.innerHTML = '<option value="" disabled selected>' + (T['ph-city-disabled'] || 'Select country first') + '</option>'
+      }
+
+      // Handle data-i18n-opt (e.g. phone code placeholder)
+      document.querySelectorAll('[data-i18n-opt]').forEach(el => {
+        const key = el.getAttribute('data-i18n-opt')
+        if (T[key] !== undefined) el.textContent = T[key]
+      })
+
+      // Re-render sector dropdown with localized labels
+      const _sectorSel = document.getElementById('wl-sector')
+      if (_sectorSel) {
+        const _savedSector = _sectorSel.value
+        const _sLabels = T['sector-labels'] || {}
+        _sectorSel.innerHTML = '<option value="" disabled selected>' + (T['ph-sector'] || 'Sector') + '</option>'
+        Object.keys(SECTORS).forEach(sector => {
+          const opt = document.createElement('option')
+          opt.value = sector
+          opt.textContent = _sLabels[sector] || sector
+          _sectorSel.appendChild(opt)
+        })
+        if (_savedSector) _sectorSel.value = _savedSector
+
+        // Also re-render trade dropdown if sector is already selected
+        const _tradeSel = document.getElementById('wl-trade')
+        if (_savedSector && _savedSector !== 'Other' && _tradeSel && !_tradeSel.disabled) {
+          const _savedTrade = _tradeSel.value
+          const _tLabels = T['trade-labels'] || {}
+          _tradeSel.innerHTML = '<option value="" disabled selected>' + (T['ph-trade'] || 'Select your trade') + '</option>'
+          ;(SECTORS[_savedSector] || []).forEach(trade => {
+            const opt = document.createElement('option')
+            opt.value = trade
+            opt.textContent = trade === 'Other' ? (T['opt-other'] || 'Other') : (_tLabels[trade] || trade)
+            _tradeSel.appendChild(opt)
+          })
+          if (_savedTrade) _tradeSel.value = _savedTrade
+        }
+      }
+
+      // Re-render country dropdown with localized labels
+      const _countrySel = document.getElementById('wl-country')
+      if (_countrySel) {
+        const _savedCountry = _countrySel.value
+        const _cLabels = T['country-labels'] || {}
+        _countrySel.innerHTML = '<option value="" disabled selected>' + (T['ph-country'] || 'Country') + '</option>'
+        Object.keys(COUNTRY_ISO).forEach(country => {
+          const opt = document.createElement('option')
+          opt.value = country
+          opt.textContent = _cLabels[country] || country
+          _countrySel.appendChild(opt)
+        })
+        if (_savedCountry) _countrySel.value = _savedCountry
+
+        // Re-render city dropdown if a country is already selected
+        const _citySel = document.getElementById('wl-city')
+        if (_savedCountry && _citySel && !_citySel.disabled) {
+          const _savedCity = _citySel.value
+          const _cityLabels = T['city-labels'] || {}
+          const _cities = CITIES[_savedCountry] || []
+          _citySel.innerHTML = '<option value="" disabled selected>' + (T['ph-city'] || 'Select city') + '</option>'
+          _cities.forEach(city => {
+            const opt = document.createElement('option')
+            opt.value = city
+            opt.textContent = city === 'Other' ? (T['opt-other'] || 'Other') : (_cityLabels[city] || city)
+            _citySel.appendChild(opt)
+          })
+          if (_savedCity) _citySel.value = _savedCity
+        }
+      }
+
+      // Mark active language in menu
+      document.querySelectorAll('.lang-menu button').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === code)
+      })
+
+      // Persist choice
+      try { localStorage.setItem('sohnus-lang', code) } catch(e) {}
+    }
+
+    /* ── NAV SCROLL ── */
     window.addEventListener('scroll', () => {
       document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 8)
     })
 
-    /* ── ANALYTICS: track form start (first field focus) ── */
+    /* ── LANG GLOBE TOGGLE ── */
+    function pickLang(code) {
+      setLang(code)
+      document.getElementById('lang-switcher').classList.remove('open')
+      document.getElementById('lang-globe-btn').setAttribute('aria-expanded', 'false')
+    }
+
+    document.getElementById('lang-globe-btn').addEventListener('click', function(e) {
+      e.stopPropagation()
+      const open = document.getElementById('lang-switcher').classList.toggle('open')
+      this.setAttribute('aria-expanded', open)
+    })
+    document.addEventListener('click', function() {
+      document.getElementById('lang-switcher').classList.remove('open')
+      document.getElementById('lang-globe-btn').setAttribute('aria-expanded', 'false')
+    })
+    document.getElementById('lang-switcher').addEventListener('click', e => e.stopPropagation())
+
+    /* ── ANALYTICS: track form start ── */
     let formStarted = false
     document.getElementById('wl-first').addEventListener('focus', () => {
-      if (!formStarted) {
-        formStarted = true
-        plausible('Form Start')
-      }
+      if (!formStarted) { formStarted = true; plausible('Form Start') }
     }, { once: true })
 
     function highlight(id, msg) {
@@ -845,7 +1905,7 @@
       }, { once: true })
     }
 
-    /* ── COUNTRY → ISO CODE ── */
+    /* ── COUNTRY ISO + PHONE CODES + CITIES ── */
     const COUNTRY_ISO = {
       'Afghanistan':'AF','Albania':'AL','Algeria':'DZ','Argentina':'AR',
       'Australia':'AU','Austria':'AT','Bahrain':'BH','Bangladesh':'BD',
@@ -869,7 +1929,6 @@
       'Vietnam':'VN','Yemen':'YE'
     };
 
-    /* ── COUNTRY → PHONE CODE + CITIES DATA ── */
     const PHONE_CODES = {
       'Afghanistan':'+93','Albania':'+355','Algeria':'+213','Argentina':'+54',
       'Australia':'+61','Austria':'+43','Bahrain':'+973','Bangladesh':'+880',
@@ -973,7 +2032,6 @@
       'Yemen':['Sanaa','Aden','Taiz','Hudaydah','Mukalla','Other']
     };
 
-    /* ── SECTORS & TRADES ── */
     const SECTORS = {
       'Construction & Real Estate': [
         'Carpenter','Bricklayer / Mason','Plasterer','Tiler','Painter & Decorator',
@@ -1077,13 +2135,24 @@
       'Other': ['Other']
     };
 
-    /* ── INIT: populate phone code dropdown, wire country change ── */
+    /* ── INIT: populate dropdowns ── */
     (function init() {
       const phoneCodeSel = document.getElementById('wl-phone-code');
+      const sectorSel    = document.getElementById('wl-sector');
+      const tradeSel     = document.getElementById('wl-trade');
+      const sectorOther  = document.getElementById('wl-sector-other');
+      const tradeOther   = document.getElementById('wl-trade-other');
 
-      // Populate sector dropdown
-      const sectorSel = document.getElementById('wl-sector');
-      const tradeSel  = document.getElementById('wl-trade');
+      // Populate country dropdown (setLang will re-render with localized labels)
+      const countrySel = document.getElementById('wl-country');
+      Object.keys(COUNTRY_ISO).forEach(country => {
+        const opt = document.createElement('option');
+        opt.value = country;
+        opt.textContent = country;
+        countrySel.appendChild(opt);
+      });
+
+      // Populate sector dropdown (setLang will re-render with localized labels)
       Object.keys(SECTORS).forEach(sector => {
         const opt = document.createElement('option');
         opt.value = sector;
@@ -1091,31 +2160,27 @@
         sectorSel.appendChild(opt);
       });
 
-      const sectorOther = document.getElementById('wl-sector-other');
-      const tradeOther  = document.getElementById('wl-trade-other');
-
-      // Wire sector → trade dropdown + "Other" field
+      // Wire sector change
       sectorSel.addEventListener('change', function() {
         const isOther = this.value === 'Other';
         sectorOther.style.display = isOther ? 'block' : 'none';
         if (isOther) sectorOther.focus();
 
         if (isOther) {
-          // Sector is Other → hide dropdown, show free text trade field directly
           tradeSel.style.display = 'none';
           tradeSel.disabled = true;
           tradeOther.style.display = 'block';
-          tradeOther.placeholder = 'What is your trade?';
+          tradeOther.placeholder = t('ph-trade-other');
         } else {
-          // Normal sector → show trade dropdown
           tradeSel.style.display = 'block';
           tradeSel.disabled = false;
           tradeSel.value = '';
-          tradeSel.innerHTML = '<option value="" disabled selected>Select your trade</option>';
+          tradeSel.innerHTML = '<option value="" disabled selected>' + t('ph-trade') + '</option>';
+          const _tradeLabels = (TRANSLATIONS[window._currentLang] || TRANSLATIONS.en)['trade-labels'] || {};
           SECTORS[this.value].forEach(trade => {
             const opt = document.createElement('option');
             opt.value = trade;
-            opt.textContent = trade;
+            opt.textContent = trade === 'Other' ? t('opt-other') : (_tradeLabels[trade] || trade);
             tradeSel.appendChild(opt);
           });
           tradeOther.style.display = 'none';
@@ -1137,52 +2202,60 @@
         ).join('');
       }
 
-      // Build sorted list: "🇪🇬 Egypt (+20)"
+      // Build sorted phone code list
       const entries = Object.entries(PHONE_CODES).sort((a, b) => a[0].localeCompare(b[0]));
       for (const [country, code] of entries) {
         const iso  = COUNTRY_ISO[country] || '';
         const flag = getFlag(iso);
         const opt  = document.createElement('option');
-        opt.value       = code;
+        opt.value           = code;
         opt.dataset.country = country;
-        opt.textContent = `${flag} ${country} (${code})`;
+        opt.textContent     = flag + ' ' + country + ' (' + code + ')';
         phoneCodeSel.appendChild(opt);
       }
 
+      // Wire country change: sync phone code + populate cities
       document.getElementById('wl-country').addEventListener('change', function() {
         const country = this.value;
 
-        // Auto-sync phone code dropdown to selected country (still overridable)
         for (const opt of phoneCodeSel.options) {
-          if (opt.dataset.country === country) {
-            phoneCodeSel.value = opt.value;
-            // Ensure the exact option is selected (shared codes like +1)
-            opt.selected = true;
-            break;
-          }
+          if (opt.dataset.country === country) { opt.selected = true; break; }
         }
 
-        // Populate city dropdown
         const citySel = document.getElementById('wl-city');
-        const cities = CITIES[country] || [];
-        citySel.innerHTML = '<option value="" disabled selected>Select city</option>';
+        const cities  = CITIES[country] || [];
+        const _ctyLabels = (TRANSLATIONS[window._currentLang] || TRANSLATIONS.en)['city-labels'] || {};
+        citySel.innerHTML = '<option value="" disabled selected>' + t('ph-city') + '</option>';
         cities.forEach(city => {
           const opt = document.createElement('option');
           opt.value = city;
-          opt.textContent = city;
+          opt.textContent = city === 'Other' ? t('opt-other') : (_ctyLabels[city] || city);
           citySel.appendChild(opt);
         });
         citySel.disabled = cities.length === 0;
       });
     })();
 
+    /* ── AUTO-DETECT LANGUAGE ── */
+    (function detectLang() {
+      let lang = 'en';
+      try { lang = localStorage.getItem('sohnus-lang') || lang; } catch(e) {}
+      if (!TRANSLATIONS[lang]) {
+        const browser = (navigator.language || '').slice(0, 2).toLowerCase();
+        if (TRANSLATIONS[browser]) lang = browser;
+        else lang = 'en';
+      }
+      setLang(lang);
+    })();
+
+    /* ── SUBMIT ── */
     async function submitWaitlist() {
       const firstName = document.getElementById('wl-first').value.trim()
       const lastName  = document.getElementById('wl-last').value.trim()
       const email     = document.getElementById('wl-email').value.trim()
       const phoneCode = document.getElementById('wl-phone-code').value
       const phoneNum  = document.getElementById('wl-phone-num').value.trim()
-      const phone     = phoneNum ? `${phoneCode} ${phoneNum}` : ''
+      const phone     = phoneNum ? phoneCode + ' ' + phoneNum : ''
       const sectorRaw = document.getElementById('wl-sector').value
       const sector    = sectorRaw === 'Other'
                           ? (document.getElementById('wl-sector-other').value.trim() || 'Other')
@@ -1194,33 +2267,34 @@
       const city      = document.getElementById('wl-city').value
       const country   = document.getElementById('wl-country').value
 
-      if (!firstName)  { highlight('wl-first',    'Please enter your first name'); return }
-      if (!lastName)   { highlight('wl-last',     'Please enter your last name');  return }
+      if (!firstName)  { highlight('wl-first',    t('err-first'));    return }
+      if (!lastName)   { highlight('wl-last',      t('err-last'));     return }
       if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        highlight('wl-email', 'Please enter a valid email address'); return
+        highlight('wl-email', t('err-email')); return
       }
-      if (!phoneCode)  { highlight('wl-phone-code', 'Please select a country code'); return }
-      if (!phoneNum)   { highlight('wl-phone-num',  'Please enter your phone number'); return }
+      if (!phoneCode)  { highlight('wl-phone-code', t('err-phone-code')); return }
+      if (!phoneNum)   { highlight('wl-phone-num',  t('err-phone'));       return }
       if (!/^\+?[\d\s\-().]{6,15}$/.test(phoneNum)) {
-        highlight('wl-phone-num', 'Please enter a valid phone number (digits only, 6-15 characters)'); return
+        highlight('wl-phone-num', t('err-phone-invalid')); return
       }
-      if (!sectorRaw)  { highlight('wl-sector',   'Please select your sector');    return }
+      if (!sectorRaw)  { highlight('wl-sector',      t('err-sector'));       return }
       if (sectorRaw === 'Other' && !document.getElementById('wl-sector-other').value.trim()) {
-        highlight('wl-sector-other', 'Please specify your sector'); return
+        highlight('wl-sector-other', t('err-sector-other')); return
       }
       if (sectorRaw === 'Other' && !document.getElementById('wl-trade-other').value.trim()) {
-        highlight('wl-trade-other', 'Please specify your trade'); return
+        highlight('wl-trade-other', t('err-trade-other')); return
       }
-      if (sectorRaw !== 'Other' && !tradeRaw) { highlight('wl-trade', 'Please select your trade'); return }
+      if (sectorRaw !== 'Other' && !tradeRaw) { highlight('wl-trade', t('err-trade')); return }
       if (tradeRaw === 'Other' && !document.getElementById('wl-trade-other').value.trim()) {
-        highlight('wl-trade-other', 'Please specify your trade'); return
+        highlight('wl-trade-other', t('err-trade-other')); return
       }
-      if (!country)    { highlight('wl-country',  'Please select your country');  return }
-      if (!city)       { highlight('wl-city',     'Please select your city');     return }
+      if (!country)    { highlight('wl-country', t('err-country')); return }
+      if (!city)       { highlight('wl-city',    t('err-city'));    return }
+
       const consent = document.getElementById('wl-consent')
       if (!consent.checked) {
         document.getElementById('wl-consent-label').classList.add('error')
-        document.getElementById('form-error').textContent = 'Please agree to the Privacy Policy to continue'
+        document.getElementById('form-error').textContent = t('err-consent')
         consent.focus()
         consent.addEventListener('change', function clear() {
           document.getElementById('wl-consent-label').classList.remove('error')
@@ -1231,30 +2305,21 @@
 
       const btn = document.getElementById('submit-btn')
       btn.disabled = true
-      btn.textContent = 'Joining…'
+      btn.textContent = t('joining')
 
       try {
         const res = await fetch('/.netlify/functions/waitlist', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            first_name: firstName,
-            last_name:  lastName,
-            email,
-            phone,
-            sector,
-            trade,
-            city,
-            country,
-          }),
+          body: JSON.stringify({ first_name: firstName, last_name: lastName, email, phone, sector, trade, city, country }),
         })
 
         const result = await res.json()
 
         if (!res.ok) {
           btn.disabled = false
-          btn.textContent = 'Join the waitlist'
-          document.getElementById('form-error').textContent = result.error || 'Something went wrong. Please try again.'
+          btn.textContent = t('submit-btn')
+          document.getElementById('form-error').textContent = result.error || t('err-generic')
           return
         }
 
@@ -1264,14 +2329,13 @@
 
       } catch (e) {
         btn.disabled = false
-        btn.textContent = 'Join the waitlist'
-        document.getElementById('form-error').textContent = 'Something went wrong. Please try again.'
+        btn.textContent = t('submit-btn')
+        document.getElementById('form-error').textContent = t('err-generic')
       }
     }
   </script>
 
   <!-- No cookie banner needed: Plausible Analytics is cookieless and GDPR compliant by default. -->
-  <!-- If you add Google Analytics or any cookie-based tool in future, re-add a consent banner here. -->
 
 </body>
 </html>
